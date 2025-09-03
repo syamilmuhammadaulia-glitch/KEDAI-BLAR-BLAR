@@ -64,10 +64,10 @@ function checkout() {
 
 // === Data Penjualan ===
 function unlockPenjualan() {
-  const pass = document.getElementById("penjualan-pass").value;
+  const pass = document.getElementById("sales-pass").value;
   if (pass === PASSWORD) {
-    document.getElementById("penjualan-lock").classList.add("hide");
-    document.getElementById("penjualan-content").classList.remove("hide");
+    document.getElementById("sales-lock").classList.add("hide");
+document.getElementById("sales-content").classList.remove("hide");
     renderSalesData();
   } else {
     alert("Password salah!");
@@ -130,6 +130,7 @@ document.querySelectorAll('nav a').forEach(link => {
     }
   });
 });
+
 
 
 
