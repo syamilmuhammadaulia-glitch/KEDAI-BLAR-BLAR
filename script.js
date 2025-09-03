@@ -1,88 +1,166 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KEDAI BLAR BLAR</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#" onclick="showPage('menu')">Menu</a></li>
-        <li><a href="#" onclick="showPage('promo')">Promo</a></li>
-        <li><a href="#" onclick="showPage('kasir')">Kasir</a></li>
-        <li><a href="#" onclick="showPage('penjualan')">Data Penjualan</a></li>
-      </ul>
-    </nav>
-  </header>
+// --- PENTING: Variabel Global dan Data Persistence ---
+let keranjang = [];
+let riwayatPenjualan = [];
+let jumlahTerjual = {};
+let currentPage = 'menu'; // Halaman default
 
-  <!-- Halaman Menu -->
-  <div id="menu" class="page">
-    <h2>Daftar Menu</h2>
-    <div class="menu-grid">
-      <div class="menu-item">
-        <img src="bakso.png" alt="Bakso">
-        <p><b>Bakso - Rp5.000</b></p>
-        <button class="add-to-cart-btn" onclick="tambahProduk('Bakso', 5000)">+ Tambah ke Kasir</button>
-      </div>
-      <div class="menu-item">
-        <img src="teh.png" alt="Es Teh">
-        <p><b>Es Teh - Rp5.000</b></p>
-        <button class="add-to-cart-btn" onclick="tambahProduk('Es Teh', 5000)">+ Tambah ke Kasir</button>
-      </div>
-      <div class="menu-item">
-        <img src="tape.png" alt="Tape Ketan Hitam">
-        <p><b>Tape Ketan Hitam - Rp3.000</b></p>
-        <button class="add-to-cart-btn" onclick="tambahProduk('Tape Ketan Hitam', 3000)">+ Tambah ke Kasir</button>
-      </div>
-      <div class="menu-item">
-        <img src="jasuke.png" alt="Jasuke">
-        <p><b>Jasuke - Rp5.000</b></p>
-        <button class="add-to-cart-btn" onclick="tambahProduk('Jasuke', 5000)">+ Tambah ke Kasir</button>
-      </div>
-    </div>
-  </div>
+// Fungsi untuk memuat data dari Local Storage saat aplikasi pertama kali dibuka
+function loadDataFromStorage() {
+    keranjang = JSON.parse(localStorage.getItem('keranjang')) || [];
+    riwayatPenjualan = JSON.parse(localStorage.getItem('riwayatPenjualan')) || [];
+    jumlahTerjual = JSON.parse(localStorage.getItem('jumlahTerjual')) || {};
+}
 
-  <!-- Halaman Promo -->
-  <div id="promo" class="page" style="display:none;">
-    <h2>Promo Spesial</h2>
-    <div class="menu-grid">
-      <div class="menu-item">
-        <img src="tape.png" alt="Promo Tape">
-        <p><b>Promo Tape (2x) - Rp5.000</b></p>
-        <button class="add-to-cart-btn" onclick="tambahProduk('Promo Tape 2x', 5000)">+ Tambah ke Kasir</button>
-      </div>
-      <div class="menu-item">
-        <div class="promo-images">
-          <img src="bakso.png" alt="Bundling Bakso">
-          <img src="teh.png" alt="Bundling Teh">
-        </div>
-        <p><b>Paket Bundling - Rp8.000</b></p>
-        <button class="add-to-cart-btn" onclick="tambahProduk('Paket Bundling', 8000)">+ Tambah ke Kasir</button>
-      </div>
-    </div>
-  </div>
+// Fungsi untuk menyimpan semua data ke Local Storage
+function saveDataToStorage() {
+    localStorage.setItem('keranjang', JSON.stringify(keranjang));
+    localStorage.setItem('riwayatPenjualan', JSON.stringify(riwayatPenjualan));
+    localStorage.setItem('jumlahTerjual', JSON.stringify(jumlahTerjual));
+}
 
-  <!-- Halaman Kasir -->
-  <div id="kasir" class="page" style="display:none;">
-    <h2>Mesin Kasir</h2>
-    <div id="kasir-container">
-        <!-- Konten kasir akan di-generate oleh JavaScript -->
-    </div>
-  </div>
+// ====================== NAVIGASI + PASSWORD (Dari Kodemu) ======================
+function showPage(page) {
+  if (page === 'kasir' || page === 'penjualan') {
+    let pass = prompt("Masukkan password:");
+    if (pass !== "KELOMPOK29A1") {
+      alert("Password salah!");
+      return;
+    }
+  }
 
-  <!-- Halaman Data Penjualan -->
-  <div id="penjualan" class="page" style="display:none;">
-    <h2>Data Penjualan</h2>
-    <div id="penjualan-container">
-        <!-- Konten data penjualan akan di-generate oleh JavaScript -->
-    </div>
-    <button onclick="hapusRiwayat()">Hapus Riwayat</button>
-  </div>
+  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+  document.getElementById(page).style.display = 'block';
+  currentPage = page;
 
-  <script src="script.js"></script>
-</body>
-</html>
+  if (page === 'kasir') renderKasir();
+  if (page === 'penjualan') renderPenjualan();
+}
 
+// ====================== MESIN KASIR (Gabungan) ======================
+function tambahProduk(nama, harga) {
+  keranjang.push({ nama, harga });
+  saveDataToStorage(); // Simpan keranjang setiap kali ada penambahan
+  alert(`'${nama}' berhasil ditambahkan ke kasir!`);
+  
+  // Update tampilan kasir jika user sedang berada di halaman kasir
+  if (currentPage === 'kasir') {
+      renderKasir();
+  }
+}
+
+function renderKasir() {
+  if (currentPage !== 'kasir') return; // Hanya render jika di halaman kasir
+
+  let total = 0;
+  let html = "<h3>Keranjang:</h3>";
+  
+  if (keranjang.length === 0) {
+    html += "<p>Keranjang kosong.</p>";
+  } else {
+    keranjang.forEach((item, i) => {
+      html += `<div class="keranjang-item">${item.nama} - ${formatRupiah(item.harga)}
+        <button class="hapus-btn" onclick="hapusProduk(${i})">❌</button></div>`;
+      total += item.harga;
+    });
+    html += `<hr><p class="total-text"><b>Total: ${formatRupiah(total)}</b></p>`;
+    html += `<div class="checkout-buttons">
+              <button onclick="checkout('Tunai')">Bayar Tunai</button>
+              <button onclick="checkout('QRIS')">Bayar QRIS</button>
+            </div>`;
+    // Bagian QRIS sekarang punya tombol konfirmasi
+    html += `<div id="qris-section" style="margin-top:15px; text-align:center; display:none;">
+               <p>Silakan scan QRIS di bawah ini:</p>
+               <img src="https://www.danacita.co.id/blog/wp-content/uploads/2022/12/Picture1.png" alt="QRIS" width="200">
+               <button onclick="finalisasiCheckout('QRIS')" style="margin-top:10px; background-color:#25d366;">Konfirmasi Pembayaran QRIS</button>
+             </div>`;
+  }
+  document.getElementById("kasir-container").innerHTML = html;
+}
+
+function hapusProduk(i) {
+  keranjang.splice(i, 1);
+  saveDataToStorage(); // Simpan perubahan
+  renderKasir();
+}
+
+// Langkah 1: Tampilkan Opsi Pembayaran
+function checkout(metode) {
+  if (keranjang.length === 0) return alert("Keranjang kosong!");
+  
+  if (metode === 'QRIS') {
+    document.getElementById("qris-section").style.display = "block";
+    // JANGAN proses dulu, tunggu konfirmasi dari kasir
+  } else if (metode === 'Tunai') {
+    finalisasiCheckout('Tunai'); // Untuk tunai, bisa langsung finalisasi
+  }
+}
+
+// Langkah 2: Proses Transaksi Setelah Dikonfirmasi
+function finalisasiCheckout(metode) {
+    if (keranjang.length === 0) return; // Cek ulang keranjang
+
+    keranjang.forEach(item => {
+        riwayatPenjualan.push({ ...item, metode, waktu: new Date().toLocaleString('id-ID') });
+        jumlahTerjual[item.nama] = (jumlahTerjual[item.nama] || 0) + 1;
+    });
+
+    alert("Transaksi berhasil via " + metode);
+    
+    keranjang = []; // Kosongkan keranjang
+    saveDataToStorage(); // Simpan semua perubahan data
+    renderKasir(); // Render ulang tampilan kasir yang sekarang kosong
+}
+
+
+// ====================== DATA PENJUALAN (Gabungan) ======================
+function renderPenjualan() {
+  let totalSemua = 0;
+  let html = "<h3>Riwayat Transaksi:</h3>";
+  
+  if (riwayatPenjualan.length === 0) {
+    html += "<p>Belum ada transaksi.</p>";
+  } else {
+    // Tampilkan riwayat dari yang terbaru ke terlama
+    [...riwayatPenjualan].reverse().forEach(r => {
+      html += `<div class="riwayat-item">${r.waktu} - ${r.nama} ${formatRupiah(r.harga)} (${r.metode})</div>`;
+      totalSemua += r.harga;
+    });
+  }
+
+  html += `<hr><p class="total-text"><b>Total Pendapatan: ${formatRupiah(totalSemua)}</b></p>`;
+  html += "<h3>Jumlah Produk Terjual:</h3>";
+  
+  if (Object.keys(jumlahTerjual).length === 0) {
+    html += "<p>Belum ada produk terjual.</p>"
+  } else {
+    for (let nama in jumlahTerjual) {
+        html += `<div class="jumlah-item">${nama}: ${jumlahTerjual[nama]}x</div>`;
+    }
+  }
+
+  document.getElementById("penjualan-container").innerHTML = html;
+}
+
+function hapusRiwayat() {
+  if (confirm("Yakin mau hapus semua riwayat penjualan?")) {
+    riwayatPenjualan = [];
+    jumlahTerjual = {};
+    saveDataToStorage(); // Simpan state yang sudah kosong
+    renderPenjualan();
+  }
+}
+
+// ====================== FUNGSI BANTUAN ======================
+function formatRupiah(angka) {
+    return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0
+    }).format(angka);
+}
+
+// ====================== INISIALISASI APLIKASI ======================
+document.addEventListener('DOMContentLoaded', () => {
+    loadDataFromStorage(); // Muat data saat halaman dibuka
+    showPage('menu'); // Tampilkan halaman menu sebagai default
+});
