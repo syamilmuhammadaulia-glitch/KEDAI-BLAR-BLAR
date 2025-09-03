@@ -29,7 +29,6 @@
           Pesan via WhatsApp
         </a>
       </div>
-
       <div class="menu-item">
         <img src="teh.png" alt="Es Teh">
         <p><b>Es Teh - Rp5.000</b></p>
@@ -38,7 +37,6 @@
           Pesan via WhatsApp
         </a>
       </div>
-
       <div class="menu-item">
         <img src="tape.png" alt="Tape Ketan Hitam">
         <p><b>Tape Ketan Hitam - Rp3.000</b></p>
@@ -50,7 +48,6 @@
           Pesan Promo via WhatsApp
         </a>
       </div>
-
       <div class="menu-item">
         <img src="jasuke.png" alt="Jasuke">
         <p><b>Jasuke - Rp5.000</b></p>
@@ -65,38 +62,77 @@
   <div id="promo" class="page" style="display:none;">
     <h2>Promo Spesial</h2>
     <div class="menu-grid">
-      <div class="menu-item">
-        <img src="tape.png" alt="Promo Tape">
-        <p><b>Tape Ketan Hitam Promo</b></p>
-        <p>Beli 2 hanya Rp5.000, hemat Rp1.000!</p>
-        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+2+porsi+Tape+Ketan+Hitam+Promo+(Rp+5.000)" target="_blank" class="whatsapp-button">
-          Pesan via WhatsApp
-        </a>
-      </div>
-
-      <div class="menu-item">
-        <div class="promo-images">
-          <img src="bakso.png" alt="Bundling Bakso">
-          <img src="teh.png" alt="Bundling Teh">
+        <div class="menu-item">
+          <img src="tape.png" alt="Promo Tape">
+          <p><b>Tape Ketan Hitam Promo (2x) - Rp5.000</b></p>
+          <p>Beli 2 hanya Rp5.000, hemat Rp1.000!</p>
+          <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+2+porsi+Tape+Ketan+Hitam+Promo+(Rp+5.000)" target="_blank" class="whatsapp-button">
+            Pesan via WhatsApp
+          </a>
         </div>
-        <p><b>Paket Bundling - Rp8.000</b></p>
-        <p>Bakso + Es Teh segar, harga hemat.</p>
-        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+Paket+Bundling+Bakso+%2B+Es+Teh+(Rp+8.000)" target="_blank" class="whatsapp-button">
-          Pesan via WhatsApp
-        </a>
+        <div class="menu-item">
+          <div class="promo-images">
+            <img src="bakso.png" alt="Bundling Bakso">
+            <img src="teh.png" alt="Bundling Teh">
+          </div>
+          <p><b>Paket Bundling - Rp8.000</b></p>
+          <p>Bakso + Es Teh segar, harga hemat.</p>
+          <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+Paket+Bundling+Bakso+%2B+Es+Teh+(Rp+8.000)" target="_blank" class="whatsapp-button">
+            Pesan via WhatsApp
+          </a>
+        </div>
       </div>
-    </div>
   </div>
 
   <div id="kasir" class="page" style="display:none;">
     <h2>Mesin Kasir</h2>
-    <div id="kasir-container"></div>
+    <div class="kasir-layout">
+        <div id="daftar-produk-kasir">
+            </div>
+        <div class="keranjang-container">
+            <h3>Keranjang</h3>
+            <div id="keranjang-item">
+                <p>Keranjang masih kosong.</p>
+            </div>
+            <hr>
+            <div class="total-section">
+                <strong>Total Pembayaran:</strong>
+                <span id="total-pembayaran">Rp 0</span>
+            </div>
+            <button id="bayar-btn">Bayar via QRIS</button>
+        </div>
+    </div>
   </div>
 
   <div id="penjualan" class="page" style="display:none;">
     <h2>Data Penjualan</h2>
-    <div id="penjualan-container"></div>
+    <div id="penjualan-container">
+        <h3>Ringkasan Penjualan</h3>
+        <p><strong>Total Pemasukan:</strong> <span id="total-pemasukan">Rp 0</span></p>
+        <hr>
+        <h3>Rincian Barang Terjual</h3>
+        <table id="rincian-penjualan">
+            <thead>
+                <tr>
+                    <th>Nama Barang</th>
+                    <th>Jumlah Terjual</th>
+                </tr>
+            </thead>
+            <tbody>
+                </tbody>
+        </table>
+    </div>
     <button onclick="hapusRiwayat()">Hapus Riwayat</button>
+  </div>
+
+  <div id="qris-modal" class="modal">
+      <div class="modal-content">
+          <span class="close-button">&times;</span>
+          <h2>Scan untuk Membayar</h2>
+          <img src="qris.png" alt="QRIS Code" style="max-width: 250px;">
+          <p>Total: <strong id="qris-total"></strong></p>
+          <button id="konfirmasi-bayar-btn">Sudah Bayar</button>
+      </div>
   </div>
 
   <script src="script.js"></script>
