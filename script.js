@@ -1,31 +1,20 @@
-// =============================
-// PASSWORD PROTECTION
-// =============================
+// ================= PASSWORD =================
 function checkPassword(pageId) {
-  const password = prompt("Masukkan password untuk membuka halaman ini:");
-  if (password === "KELOMPOK29A1") {
+  const pass = prompt("Masukkan password:");
+  if (pass === "KELOMPOK29A2") {
     showPage(pageId);
   } else {
     alert("❌ Password salah!");
   }
 }
 
-// =============================
-// NAVIGASI HALAMAN
-// =============================
+// ================= NAVIGASI =================
 function showPage(pageId) {
-  // sembunyikan semua halaman
-  document.querySelectorAll(".page").forEach(page => {
-    page.style.display = "none";
-  });
-
-  // tampilkan halaman yang dipilih
+  document.querySelectorAll(".page").forEach(p => p.style.display = "none");
   document.getElementById(pageId).style.display = "block";
 }
 
-// =============================
-// MESIN KASIR
-// =============================
+// ================= MESIN KASIR =================
 let cart = [];
 let salesData = JSON.parse(localStorage.getItem("salesData")) || {
   bakso: 0,
@@ -43,107 +32,74 @@ function addToCart(product, price, key) {
 }
 
 function renderCart() {
-  const cartList = document.getElementById("cart-list");
-  const totalDisplay = document.getElementById("total");
+  let cartList = document.getElementById("cart-list");
+  let totalEl = document.getElementById("total");
   cartList.innerHTML = "";
   let total = 0;
 
-  cart.forEach((item, index) => {
+  cart.forEach((item, i) => {
     let li = document.createElement("li");
     li.textContent = `${item.product} - Rp ${item.price}`;
-    // tombol hapus item
-    let delBtn = document.createElement("button");
-    delBtn.textContent = "❌";
-    delBtn.style.marginLeft = "10px";
-    delBtn.onclick = () => {
-      cart.splice(index, 1);
-      renderCart();
-    };
-    li.appendChild(delBtn);
+    let del = document.createElement("button");
+    del.textContent = "❌";
+    del.onclick = () => { cart.splice(i, 1); renderCart(); };
+    li.appendChild(del);
     cartList.appendChild(li);
-
     total += item.price;
   });
 
-  totalDisplay.textContent = "Rp " + total;
+  totalEl.textContent = "Rp " + total;
 }
 
 function checkout(method) {
-  if (cart.length === 0) {
-    alert("Keranjang masih kosong!");
-    return;
-  }
+  if (cart.length === 0) return alert("Keranjang kosong!");
 
-  let total = cart.reduce((sum, item) => sum + item.price, 0);
-
-  // update salesData
-  cart.forEach(item => {
-    if (item.key && salesData[item.key] !== undefined) {
-      salesData[item.key] += 1;
-    }
-  });
+  let total = cart.reduce((sum, it) => sum + it.price, 0);
+  cart.forEach(it => { if (salesData[it.key] !== undefined) salesData[it.key]++; });
   salesData.totalRevenue += total;
-
-  // simpan ke localStorage
   localStorage.setItem("salesData", JSON.stringify(salesData));
 
-  // reset keranjang
   cart = [];
   renderCart();
+  renderSalesData();
 
-  if (method === "tunai") {
-    alert("Transaksi berhasil ✅ Dibayar Tunai Rp " + total);
-  } else if (method === "qris") {
-    alert("Transaksi berhasil ✅ Dibayar via QRIS Rp " + total);
+  if (method === "tunai") alert("✅ Transaksi Tunai Rp " + total);
+  if (method === "qris") {
     document.getElementById("qrisModal").style.display = "block";
+    alert("✅ Transaksi QRIS Rp " + total);
   }
 }
 
-// =============================
-// DATA PENJUALAN
-// =============================
+// ================= DATA PENJUALAN =================
 function renderSalesData() {
-  const dataDiv = document.getElementById("sales-data");
-  dataDiv.innerHTML = `
-    <p>Bakso Terjual: ${salesData.bakso}</p>
-    <p>Tape Ketan Hitam Terjual: ${salesData.tape}</p>
-    <p>Tape Ketan Hitam Promo (2pcs): ${salesData.tapePromo}</p>
-    <p>Es Teh Terjual: ${salesData.esteh}</p>
-    <p>Paket Bundling Bakso + Es Teh: ${salesData.bundling}</p>
-    <p>Jasuke Terjual: ${salesData.jasuke}</p>
-    <h3>Total Pendapatan: Rp ${salesData.totalRevenue}</h3>
+  const d = salesData;
+  let div = document.getElementById("sales-data");
+  div.innerHTML = `
+    <p>Bakso Terjual: ${d.bakso}</p>
+    <p>Tape Ketan Hitam: ${d.tape}</p>
+    <p>Tape Promo (2 pcs): ${d.tapePromo}</p>
+    <p>Es Teh: ${d.esteh}</p>
+    <p>Bundling Bakso + Es Teh: ${d.bundling}</p>
+    <p>Jasuke: ${d.jasuke}</p>
+    <h3>Total Pendapatan: Rp ${d.totalRevenue}</h3>
   `;
 }
 
 function clearSalesData() {
-  if (confirm("Apakah yakin ingin menghapus semua data penjualan?")) {
-    salesData = {
-      bakso: 0,
-      tape: 0,
-      tapePromo: 0,
-      esteh: 0,
-      bundling: 0,
-      jasuke: 0,
-      totalRevenue: 0
-    };
+  if (confirm("Yakin reset data penjualan?")) {
+    salesData = { bakso:0, tape:0, tapePromo:0, esteh:0, bundling:0, jasuke:0, totalRevenue:0 };
     localStorage.setItem("salesData", JSON.stringify(salesData));
     renderSalesData();
-    alert("Data penjualan berhasil direset!");
   }
 }
 
-// =============================
-// MODAL QRIS
-// =============================
+// ================= MODAL QRIS =================
 function closeQris() {
   document.getElementById("qrisModal").style.display = "none";
 }
 
-// =============================
-// SAAT LOAD AWAL
-// =============================
-window.onload = function () {
-  // default halaman utama
+// ================= INIT =================
+window.onload = () => {
   showPage("home");
   renderCart();
   renderSalesData();
