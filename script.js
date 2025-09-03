@@ -1,102 +1,88 @@
-let keranjang = [];
-let riwayatPenjualan = [];
-let jumlahTerjual = {};
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KEDAI BLAR BLAR</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#" onclick="showPage('menu')">Menu</a></li>
+        <li><a href="#" onclick="showPage('promo')">Promo</a></li>
+        <li><a href="#" onclick="showPage('kasir')">Kasir</a></li>
+        <li><a href="#" onclick="showPage('penjualan')">Data Penjualan</a></li>
+      </ul>
+    </nav>
+  </header>
 
-// ====================== NAVIGASI + PASSWORD ======================
-function showPage(page) {
-  if (page === 'kasir' || page === 'penjualan') {
-    let pass = prompt("Masukkan password:");
-    if (pass !== "KELOMPOK29A1") {
-      alert("Password salah!");
-      return;
-    }
-  }
+  <!-- Halaman Menu -->
+  <div id="menu" class="page">
+    <h2>Daftar Menu</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="bakso.png" alt="Bakso">
+        <p><b>Bakso - Rp5.000</b></p>
+        <button class="add-to-cart-btn" onclick="tambahProduk('Bakso', 5000)">+ Tambah ke Kasir</button>
+      </div>
+      <div class="menu-item">
+        <img src="teh.png" alt="Es Teh">
+        <p><b>Es Teh - Rp5.000</b></p>
+        <button class="add-to-cart-btn" onclick="tambahProduk('Es Teh', 5000)">+ Tambah ke Kasir</button>
+      </div>
+      <div class="menu-item">
+        <img src="tape.png" alt="Tape Ketan Hitam">
+        <p><b>Tape Ketan Hitam - Rp3.000</b></p>
+        <button class="add-to-cart-btn" onclick="tambahProduk('Tape Ketan Hitam', 3000)">+ Tambah ke Kasir</button>
+      </div>
+      <div class="menu-item">
+        <img src="jasuke.png" alt="Jasuke">
+        <p><b>Jasuke - Rp5.000</b></p>
+        <button class="add-to-cart-btn" onclick="tambahProduk('Jasuke', 5000)">+ Tambah ke Kasir</button>
+      </div>
+    </div>
+  </div>
 
-  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-  document.getElementById(page).style.display = 'block';
-  currentPage = page;
+  <!-- Halaman Promo -->
+  <div id="promo" class="page" style="display:none;">
+    <h2>Promo Spesial</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="tape.png" alt="Promo Tape">
+        <p><b>Promo Tape (2x) - Rp5.000</b></p>
+        <button class="add-to-cart-btn" onclick="tambahProduk('Promo Tape 2x', 5000)">+ Tambah ke Kasir</button>
+      </div>
+      <div class="menu-item">
+        <div class="promo-images">
+          <img src="bakso.png" alt="Bundling Bakso">
+          <img src="teh.png" alt="Bundling Teh">
+        </div>
+        <p><b>Paket Bundling - Rp8.000</b></p>
+        <button class="add-to-cart-btn" onclick="tambahProduk('Paket Bundling', 8000)">+ Tambah ke Kasir</button>
+      </div>
+    </div>
+  </div>
 
-  if (page === 'kasir') renderKasir();
-  if (page === 'penjualan') renderPenjualan();
-}
+  <!-- Halaman Kasir -->
+  <div id="kasir" class="page" style="display:none;">
+    <h2>Mesin Kasir</h2>
+    <div id="kasir-container">
+        <!-- Konten kasir akan di-generate oleh JavaScript -->
+    </div>
+  </div>
 
+  <!-- Halaman Data Penjualan -->
+  <div id="penjualan" class="page" style="display:none;">
+    <h2>Data Penjualan</h2>
+    <div id="penjualan-container">
+        <!-- Konten data penjualan akan di-generate oleh JavaScript -->
+    </div>
+    <button onclick="hapusRiwayat()">Hapus Riwayat</button>
+  </div>
 
-// ====================== MESIN KASIR ======================
-function tambahProduk(nama, harga) {
-  keranjang.push({ nama, harga });
-  renderKasir();
-}
-
-function renderKasir() {
-  let total = 0;
-  let html = "<h3>Keranjang:</h3>";
-  if (keranjang.length === 0) {
-    html += "<p>Keranjang kosong.</p>";
-  } else {
-    keranjang.forEach((item, i) => {
-      html += `${item.nama} - Rp${item.harga.toLocaleString()} 
-        <button onclick="hapusProduk(${i})">❌</button><br>`;
-      total += item.harga;
-    });
-    html += `<p><b>Total: Rp${total.toLocaleString()}</b></p>`;
-    html += `<button onclick="checkout('Tunai')">Bayar Tunai</button>
-             <button onclick="checkout('QRIS')">Bayar QRIS</button>`;
-    html += `<div id="qris-section" style="margin-top:10px; display:none;">
-               <img src="img/qris.png" alt="QRIS" width="200">
-             </div>`;
-  }
-  document.getElementById("kasir-container").innerHTML = html;
-}
-
-function hapusProduk(i) {
-  keranjang.splice(i, 1);
-  renderKasir();
-}
-
-function checkout(metode) {
-  if (keranjang.length === 0) return alert("Keranjang kosong!");
-  
-  if (metode === 'QRIS') {
-    document.getElementById("qris-section").style.display = "block";
-  }
-
-  keranjang.forEach(item => {
-    riwayatPenjualan.push({ ...item, metode, waktu: new Date().toLocaleString() });
-    jumlahTerjual[item.nama] = (jumlahTerjual[item.nama] || 0) + 1;
-  });
-  alert("Transaksi berhasil via " + metode);
-  keranjang = [];
-  renderKasir();
-}
-
-// ====================== DATA PENJUALAN ======================
-function renderPenjualan() {
-  let totalSemua = 0;
-  let html = "<h3>Riwayat Transaksi:</h3>";
-  if (riwayatPenjualan.length === 0) {
-    html += "<p>Belum ada transaksi.</p>";
-  } else {
-    riwayatPenjualan.forEach(r => {
-      html += `${r.waktu} - ${r.nama} Rp${r.harga.toLocaleString()} (${r.metode})<br>`;
-      totalSemua += r.harga;
-    });
-  }
-
-  html += `<p><b>Total Pendapatan: Rp${totalSemua.toLocaleString()}</b></p>`;
-  html += "<h3>Jumlah Produk Terjual:</h3>";
-  for (let nama in jumlahTerjual) {
-    html += `${nama}: ${jumlahTerjual[nama]}x<br>`;
-  }
-  document.getElementById("penjualan-container").innerHTML = html;
-}
-
-function hapusRiwayat() {
-  if (confirm("Yakin mau hapus semua riwayat penjualan?")) {
-    riwayatPenjualan = [];
-    jumlahTerjual = {};
-    renderPenjualan();
-  }
-}
-
-
+  <script src="script.js"></script>
+</body>
+</html>
 
