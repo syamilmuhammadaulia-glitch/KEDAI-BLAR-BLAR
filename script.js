@@ -16,123 +16,148 @@ document.querySelectorAll(".nav-links a").forEach(link => {
 document.querySelectorAll("section").forEach(sec => sec.classList.add("hide"));
 document.getElementById("home").classList.remove("hide");
 
-// === Kasir ===
-function unlockKasir() {
-  const pass = document.getElementById("kasir-pass").value;
-  if (pass === "KELOMPOK29A1") { // ganti password sesuai kebutuhan
-    document.getElementById("kasir-lock").classList.add("hide");
-    document.getElementById("kasir-content").classList.remove("hide");
-  } else {
-    alert("❌ Password salah!");
-  }
-}
+const PASSWORD = "1234";
 
-function addItem(name, price) {
-  cart.push({ name, price });
-  renderCart();
-}
+// === EVENT LISTENER ===
+document.addEventListener("DOMContentLoaded", () => {
+  const checkoutBtn = document.getElementById("checkout-btn");
+  const qrisBox = document.getElementById("qris-box");
+  const qrisDoneBtn = document.getElementById("qris-done-btn");
 
-function renderCart() {
-  const cartBox = document.getElementById("cart");
-  cartBox.innerHTML = "";
-  let total = 0;
-  cart.forEach((item, i) => {
-    total += item.price;
-    const div = document.createElement("div");
-    div.className = "item";
-    div.innerHTML = `${item.name} - Rp ${item.price} <button onclick="removeItem(${i})">x</button>`;
-    cartBox.appendChild(div);
+  // Event: pilih metode pembayaran
+  document.querySelectorAll("#kasir input[name=payment]").forEach(radio => {
+    radio.addEventListener("change", () => {
+      if (radio.value === "QRIS") {
+        qrisBox.classList.remove("hide");
+      } else {
+        qrisBox.classList.add("hide");
+      }
+    });
   });
-  document.getElementById("total").innerText = total;
-}
 
-function removeItem(i) {
-  cart.splice(i, 1);
-  renderCart();
-}
+  // Event: checkout
+  checkoutBtn.addEventListener("click", () => {
+    const items = [];
+    let total = 0;
 
-function checkout() {
-  if (cart.length === 0) return alert("Keranjang kosong!");
-  const payment = document.getElementById("payment").value;
-  const total = cart.reduce((sum, i) => sum + i.price, 0);
-  sales.push({ items: [...cart], total, payment, date: new Date().toLocaleString() });
-  localStorage.setItem("salesData", JSON.stringify(sales));
-  alert("Transaksi berhasil!");
-  cart = [];
-  renderCart();
-}
-<script>
+    document.querySelectorAll("#kasir input[type=checkbox]:checked").forEach(cb => {
+      items.push({ name: cb.value });
+      total += Number(cb.dataset.price);
+    });
+
+    const paymentMethod = document.querySelector("#kasir input[name=payment]:checked");
+    if (!paymentMethod) {
+      alert("Pilih metode pembayaran!");
+      return;
+    }
+
+    if (items.length === 0) {
+      alert("Pilih minimal 1 produk!");
+      return;
+    }
+
+    // kalau QRIS harus klik "sudah bayar"
+    if (paymentMethod.value === "QRIS") {
+      alert("Silakan scan QR dulu, lalu klik 'Saya sudah bayar'.");
+      return;
+    }
+
+    simpanTransaksi(items, total, paymentMethod.value);
+    alert("Transaksi berhasil disimpan!");
+  });
+
+  // Event: QRIS selesai bayar
+  qrisDoneBtn.addEventListener("click", () => {
+    const items = [];
+    let total = 0;
+
+    document.querySelectorAll("#kasir input[type=checkbox]:checked").forEach(cb => {
+      items.push({ name: cb.value });
+      total += Number(cb.dataset.price);
+    });
+
+    if (items.length === 0) {
+      alert("Pilih minimal 1 produk!");
+      return;
+    }
+
+    simpanTransaksi(items, total, "QRIS");
+    alert("Transaksi QRIS berhasil disimpan!");
+    qrisBox.classList.add("hide");
+    document.querySelectorAll("#kasir input[type=checkbox]").forEach(cb => cb.checked = false);
+  });
+
+  // Unlock Data Penjualan
+  document.getElementById("sales-unlock-btn").addEventListener("click", unlockPenjualan);
+  document.getElementById("clear-sales-btn").addEventListener("click", clearAllSales);
+});
+
+// === Simpan Transaksi ===
 function simpanTransaksi(items, total, payment) {
   const sales = JSON.parse(localStorage.getItem("salesData")) || [];
   sales.push({
     date: new Date().toLocaleString("id-ID"),
-    items: items,            // contoh: [{name:"Bakso"}, {name:"Es Teh"}]
-    total: Number(total) || 0,
-    payment: payment         // "Tunai" | "QRIS"
+    items: items,
+    total: total,
+    payment: payment
   });
   localStorage.setItem("salesData", JSON.stringify(sales));
 }
-</script>
-// Contoh di tombol Checkout Tunai
-simpanTransaksi(cartItems, grandTotal, "Tunai");
 
-// Contoh di tombol Checkout QRIS (setelah sukses)
-simpanTransaksi(cartItems, grandTotal, "QRIS");
-
-// === Data Penjualan ===
+// === Unlock Data Penjualan ===
 function unlockPenjualan() {
   const pass = document.getElementById("sales-pass").value;
   if (pass === PASSWORD) {
     document.getElementById("sales-lock").classList.add("hide");
-document.getElementById("sales-content").classList.remove("hide");
+    document.getElementById("sales-content").classList.remove("hide");
     renderSalesData();
   } else {
     alert("Password salah!");
   }
 }
 
+// === Render Data ===
 function renderSalesData() {
-  const salesList = document.getElementById("salesList");
-  salesList.innerHTML = "";
+  const sales = JSON.parse(localStorage.getItem("salesData")) || [];
+  const salesListEl = document.getElementById("salesList");
+  salesListEl.innerHTML = "";
   let total = 0;
 
   sales.forEach((sale, index) => {
     total += sale.total;
     const div = document.createElement("div");
     div.className = "sale-item";
-    let itemsText = sale.items.map(i => i.name).join(", ");
+    const itemsText = sale.items.map(i => i.name).join(", ");
     div.innerHTML = `
-      <span>${sale.date} - ${itemsText} - Rp ${sale.total} (${sale.payment})</span>
+      <span>${sale.date} - ${itemsText} - Rp ${formatRupiah(sale.total)} (${sale.payment})</span>
       <button onclick="removeSale(${index})">Hapus</button>
     `;
-    salesList.appendChild(div);
+    salesListEl.appendChild(div);
   });
 
-  document.getElementById("salesTotal").innerText = total;
+  document.getElementById("salesTotal").innerText = formatRupiah(total);
 }
 
+// === Hapus Satu Data ===
 function removeSale(index) {
+  const sales = JSON.parse(localStorage.getItem("salesData")) || [];
   sales.splice(index, 1);
   localStorage.setItem("salesData", JSON.stringify(sales));
   renderSalesData();
 }
 
+// === Hapus Semua Data ===
 function clearAllSales() {
   if (confirm("Yakin mau hapus semua data penjualan?")) {
-    sales = [];
-    localStorage.setItem("salesData", JSON.stringify(sales));
+    localStorage.setItem("salesData", JSON.stringify([]));
     renderSalesData();
   }
 }
-// Setelah user klik "Bayar Tunai"
-simpanTransaksi(cartItems, grandTotal, "Tunai");
 
-// Setelah user klik "Bayar QRIS"
-simpanTransaksi(cartItems, grandTotal, "QRIS");
-<script>
-// Password sederhana (ubah sesuai kebutuhan)
-const PASSWORD = "1234";
-
+// === Format Rupiah ===
+function formatRupiah(n) {
+  return Number(n).toLocaleString("id-ID");
+}
 // === UNLOCK ===
 function unlockPenjualan() {
   const pass = document.getElementById("sales-pass").value;
@@ -225,6 +250,7 @@ document.querySelectorAll('nav a').forEach(link => {
     }
   });
 });
+
 
 
 
