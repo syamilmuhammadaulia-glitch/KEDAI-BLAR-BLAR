@@ -1,10 +1,15 @@
-const PASSWORD = "KELOMPOK29A1";
+const PASSWORD = "KELOMPOK29A1"; // jangan ditampilin di halaman
 let cart = [];
 let sales = JSON.parse(localStorage.getItem("sales")) || [];
 
+// === Simpan ke localStorage ===
+function saveSales() {
+  localStorage.setItem("sales", JSON.stringify(sales));
+}
+
 // === Navigasi antar halaman ===
 document.querySelectorAll(".nav-links a").forEach(link => {
-  link.addEventListener("click", function(e) {
+  link.addEventListener("click", function (e) {
     e.preventDefault();
     const target = this.getAttribute("href").substring(1);
 
@@ -61,11 +66,15 @@ function checkout() {
   if (cart.length === 0) return alert("Keranjang kosong!");
   const payment = document.getElementById("payment").value;
   const total = cart.reduce((sum, i) => sum + i.price, 0);
-  sales.push({ items: cart, total, payment, date: new Date() });
-  localStorage.setItem("sales", JSON.stringify(sales));
+
+  sales.push({ items: [...cart], total, payment, date: new Date() });
+  saveSales();
+
   alert("Transaksi berhasil!");
   cart = [];
   renderCart();
+  renderSales();
+  renderSalesData();
 }
 
 // === Data Penjualan ===
@@ -75,11 +84,13 @@ function unlockPenjualan() {
     document.getElementById("penjualan-lock").classList.add("hide");
     document.getElementById("penjualan-content").classList.remove("hide");
     renderSales();
+    renderSalesData();
   } else {
     alert("Password salah!");
   }
 }
 
+// Rekap Penjualan (jumlah produk terjual + total pendapatan)
 function renderSales() {
   let rekap = {};
   let totalPendapatan = 0;
@@ -98,50 +109,61 @@ function renderSales() {
   html += `</ul><p><b>Total Pendapatan: Rp ${totalPendapatan}</b></p>`;
   document.getElementById("rekap").innerHTML = html;
 }
+
+// Daftar transaksi detail
+function renderSalesData() {
+  const salesList = document.getElementById("salesList");
+  salesList.innerHTML = "";
+  let total = 0;
+
+  sales.forEach((sale, index) => {
+    const div = document.createElement("div");
+    div.className = "item";
+
+    let itemsText = sale.items.map(i => i.name).join(", ");
+    div.innerHTML = `
+      <span>${itemsText} - Rp ${sale.total} (${sale.payment})</span>
+      <div class="actions">
+        <button class="btn small" onclick="removeSale(${index})">Hapus</button>
+      </div>
+    `;
+    salesList.appendChild(div);
+
+    total += sale.total;
+  });
+
+  document.getElementById("salesTotal").innerText = total;
+}
+
+// Hapus 1 transaksi
+function removeSale(index) {
+  sales.splice(index, 1);
+  saveSales();
+  renderSalesData();
+  renderSales();
+}
+
+// Hapus semua transaksi
+function clearAllSales() {
+  if (confirm("Yakin mau hapus semua data penjualan?")) {
+    sales = [];
+    saveSales();
+    renderSalesData();
+    renderSales();
+  }
+}
+
 // === QRIS toggle ===
-document.getElementById("payment").addEventListener("change", function() {
+document.getElementById("payment").addEventListener("change", function () {
   if (this.value === "qris") {
     document.getElementById("qris-box").classList.remove("hide");
   } else {
     document.getElementById("qris-box").classList.add("hide");
   }
 });
-// Render Data Penjualan
-function renderSalesData() {
-  const salesList = document.getElementById("salesList");
-  salesList.innerHTML = "";
-  let total = 0;
 
-  sales.forEach((item, index) => {
-    total += item.price * item.qty;
-    const div = document.createElement("div");
-    div.className = "item";
-    div.innerHTML = `
-      <span>${item.name} x${item.qty} - Rp ${item.price * item.qty}</span>
-      <div class="actions">
-        <button class="btn small" onclick="removeSale(${index})">Hapus</button>
-      </div>
-    `;
-    salesList.appendChild(div);
-  });
-
-  document.getElementById("salesTotal").innerText = total;
-}
-
-// Hapus 1 item dari data penjualan
-function removeSale(index) {
-  sales.splice(index, 1);
+// Render ulang pas load awal
+document.addEventListener("DOMContentLoaded", () => {
+  renderSales();
   renderSalesData();
-}
-
-// Hapus semua data penjualan
-function clearAllSales() {
-  if (confirm("Yakin mau hapus semua data penjualan?")) {
-    sales = [];
-    renderSalesData();
-  }
-}
-
-
-
-
+});
