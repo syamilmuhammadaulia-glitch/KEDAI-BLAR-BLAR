@@ -157,116 +157,57 @@
   </section>
 
 <!-- === KASIR === -->
-<section id="kasir" class="section hide">
-  <div class="container">
-    
-    <!-- FORM PASSWORD -->
-    <div id="kasir-lock" class="lock">
-      <h2>🔒 Akses Kasir</h2>
-      <input type="password" id="kasir-pass" placeholder="Masukkan Password">
-      <br><br>
-      <button onclick="unlockKasir()">Masuk</button>
+  <section id="kasir" class="section">
+    <h2>🛒 Kasir</h2>
+
+    <!-- Daftar barang -->
+    <div>
+      <label><input type="checkbox" value="Bakso" data-price="10000"> Bakso (Rp 10.000)</label><br>
+      <label><input type="checkbox" value="Es Teh" data-price="5000"> Es Teh (Rp 5.000)</label><br>
+      <label><input type="checkbox" value="Jasuke" data-price="7000"> Jasuke (Rp 7.000)</label>
     </div>
 
-    <!-- KONTEN KASIR -->
-    <div id="kasir-content" class="hide">
-      <h2>🛒 Mesin Kasir</h2>
-      <div class="produk">
-        <button onclick="addItem('Bakso', 5000)">+ Bakso Rp 5.000</button>
-        <button onclick="addItem('Tape Ketan Hitam', 3000)">+ Tape Rp 3.000</button>
-        <button onclick="addItem('Bundling Tape (2)', 5000)">+ Bundling Tape 2 Rp 5.000</button>
-        <button onclick="addItem('Es Teh', 5000)">+ Es Teh Rp 5.000</button>
-        <button onclick="addItem('Bundling Bakso + Es Teh', 8000)">+ Paket Bakso+EsTeh Rp 8.000</button>
-        <button onclick="addItem('Jasuke', 5000)">+ Jasuke Rp 5.000</button>
-      </div>
+    <!-- Pilihan metode -->
+    <h3>Pilih metode bayar:</h3>
+    <label><input type="radio" name="payment" value="Tunai"> Tunai</label>
+    <label><input type="radio" name="payment" value="QRIS"> QRIS</label>
 
-      <div id="cart"></div>
-      <p>Total: Rp <span id="total">0</span></p>
-
-      <label>Metode Pembayaran:
-        <select id="payment">
-          <option value="tunai">Tunai</option>
-          <option value="qris">QRIS</option>
-        </select>
-      </label>
-
-      <div id="qris-box" class="hide">
-        <p>Scan QRIS untuk bayar:</p>
-        <img src="Qris.png" alt="QRIS" style="max-width:200px;">
-      </div>
-
-      <button onclick="checkout()">Checkout</button>
+    <!-- QRIS Dummy -->
+    <div id="qris-box" class="hide" style="margin-top:10px;">
+      <p>Scan QR di bawah untuk bayar:</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=KEDAI-BLAR-BLAR" alt="QRIS Code">
+      <br><button id="qris-done-btn" class="btn btn-primary" style="margin-top:8px;">Saya sudah bayar</button>
     </div>
 
-  </div>
-</section>
-<section id="kasir" class="section hide">
-  <!-- Kasir lock & konten -->
-</section>
+    <br>
+    <button id="checkout-btn" class="btn btn-primary">Checkout</button>
+  </section>
 
-<section id="penjualan" class="section hide">
-  <!-- Data Penjualan lock & konten -->
-</section>
+  <!-- === DATA PENJUALAN === -->
+  <section id="penjualan" class="section">
+    <h2>📊 Data Penjualan</h2>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <title>Data Penjualan</title>
-  <style>
-    body { font-family: Arial, sans-serif; background:#f9f9f9; margin:0; padding:20px; }
-    .card { background:#fff; padding:16px; border-radius:8px; margin-bottom:16px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
-    .hide { display:none; }
-    .sale-item { display:flex; justify-content:space-between; margin:6px 0; padding:6px; border-bottom:1px solid #ddd; }
-    .sale-item button { background:#e74c3c; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer; }
-    .btn { padding:8px 16px; border:none; border-radius:6px; cursor:pointer; }
-    .btn-primary { background:#3498db; color:white; }
-    .btn-danger { background:#e74c3c; color:white; }
-  </style>
-</head>
-<body>
+    <!-- Lock -->
+    <div id="sales-lock">
+      <p>Masukkan password untuk melihat data penjualan:</p>
+      <input id="sales-pass" type="password" placeholder="Password">
+      <button id="sales-unlock-btn" class="btn btn-primary">Masuk</button>
+    </div>
 
-<!-- === Data Penjualan === -->
-<section id="penjualan" class="section">
-  <h2>📊 Data Penjualan</h2>
+    <!-- Content -->
+    <div id="sales-content" class="hide">
+      <h3>Transaksi Terbaru</h3>
+      <div id="salesList"></div>
 
-  <!-- Lock -->
-  <div id="penjualan-lock" class="card">
-    <p>Masukkan password untuk melihat data penjualan:</p>
-    <input id="penjualan-pass" type="password" placeholder="Password" />
-    <button class="btn btn-primary" onclick="unlockPenjualan()">Masuk</button>
-  </div>
+      <h3>Total Pendapatan: Rp <span id="salesTotal">0</span></h3>
+      <button id="clear-sales-btn" class="btn btn-danger">Hapus Semua Data</button>
+    </div>
+  </section>
 
-  <!-- Content -->
-  <div id="penjualan-content" class="card hide">
-    <h3>Transaksi</h3>
-    <div id="salesList"></div>
-
-    <h3 style="margin-top:12px;">Total Pendapatan: Rp <span id="salesTotal">0</span></h3>
-
-    <button class="btn btn-danger" onclick="clearAllSales()">Hapus Semua Data</button>
-  </div>
-</section>
-
-<script>
-  // Simpan password untuk masuk
-  const PASSWORD = "1234";
-
-  // Load data penjualan dari localStorage
-  let sales = JSON.parse(localStorag
-<script>
-function simpanTransaksi(items, total, payment) {
-  const sales = JSON.parse(localStorage.getItem("salesData")) || [];
-  sales.push({
-    date: new Date().toLocaleString("id-ID"),
-    items: items,        // contoh: [{name:"Bakso"}, {name:"Es Teh"}]
-    total: Number(total) || 0,
-    payment: payment     // "Tunai" atau "QRIS"
-  });
-  localStorage.setItem("salesData", JSON.stringify(sales));
-}
-</script>
-
+  <!-- JS -->
+  <script src="app.js"></script>
+</body>
+</html>
 
   <!-- konten website lo -->
 
@@ -288,6 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (clearBtn) clearBtn.addEventListener('click', clearAllSales);
 });
 </script>
+
 
 
 
