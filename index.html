@@ -209,37 +209,95 @@
 </section>
 
 <!-- === Data Penjualan === -->
-        <section id="penjualan" class="section hide" style="background-color: var(--background-color);">
-            <div class="container">
-                <h2>📊 Data Penjualan</h2>
+<section id="penjualan" class="section hide">
+  <div class="container">
+    <h2>📊 Data Penjualan</h2>
+    <div id="sales-content" class="card">
+      <h3>Transaksi Terbaru</h3>
+      <div id="salesList" class="list"></div>
+      <div style="margin-top:12px;">
+        <strong>Total Pendapatan: Rp <span id="salesTotal">0</span></strong>
+      </div>
+      <button class="btn btn-danger" onclick="clearSales()" style="margin-top:8px;">Hapus Semua Data</button>
+    </div>
+  </div>
+</section>
 
-                <div id="sales-lock" class="card lock">
-                    <p class="subtle">Masukkan password untuk melihat data penjualan.</p>
-                    <input id="sales-pass" class="input" type="password" placeholder="Masukkan password" />
-                    <div style="margin-top:8px; display:flex; gap:8px;">
-                        <button class="btn btn-primary" id="sales-unlock-btn">Masuk</button>
-                        <button class="btn bg-gray-300 hover:bg-gray-400 text-gray-800" onclick="document.querySelectorAll('.section').forEach(s=>s.classList.add('hide')); document.getElementById('kasir').classList.remove('hide')">Kembali</button>
-                    </div>
-                    <p id="sales-msg" class="subtle" style="color:#c0392b; display:none;"></p>
-                </div>
+<!-- === Modal QRIS === -->
+<div id="qris-modal" class="hide">
+  <div class="box">
+    <h3>Scan QRIS untuk Bayar</h3>
+    <img src="img/qris.png" alt="QRIS" style="width:200px; margin:12px auto;"/>
+    <p>Total: Rp <span id="qrisTotal"></span></p>
+    <button class="btn btn-primary" onclick="selesaiQRIS()">Selesai</button>
+    <button class="btn btn-danger" onclick="closeQRIS()">Tutup</button>
+  </div>
+</div>
 
-                <div id="sales-content" class="card hide">
-                    <h3>Rekap Produk</h3>
-                    <div id="rekap" class="list"></div>
+<script>
+  let totalBelanja = 25000; // contoh harga total
 
-                    <h3 style="margin-top:12px;">Transaksi Terbaru</h3>
-                    <div id="salesList" class="list"></div>
+  // Fungsi bayar tunai
+  function bayarTunai() {
+    simpanTransaksi("Tunai", totalBelanja);
+    alert("Pembayaran tunai berhasil!");
+    tampilData();
+  }
 
-                    <div style="display:flex; gap:8px; align-items:center; margin-top:12px;">
-                        <strong>Total Pendapatan: Rp <span id="salesTotal">0</span></strong>
-                        <div style="flex:1"></div>
-                        <button class="btn bg-red-500 hover:bg-red-600 text-white" id="clear-sales-btn">Hapus Semua Data</button>
-                    </div>
-                    <p id="user-id" class="subtle text-center mt-4"></p>
-                </div>
-            </div>
-        </section>
+  // Fungsi bayar QRIS (munculkan modal)
+  function bayarQRIS() {
+    document.getElementById("qrisTotal").innerText = totalBelanja;
+    document.getElementById("qris-modal").classList.remove("hide");
+  }
 
+  // Tutup modal QRIS tanpa transaksi
+  function closeQRIS() {
+    document.getElementById("qris-modal").classList.add("hide");
+  }
+
+  // Selesai QRIS = simpan transaksi
+  function selesaiQRIS() {
+    simpanTransaksi("QRIS", totalBelanja);
+    document.getElementById("qris-modal").classList.add("hide");
+    alert("Pembayaran QRIS berhasil!");
+    tampilData();
+  }
+
+  // Simpan transaksi ke localStorage
+  function simpanTransaksi(metode, jumlah) {
+    let sales = JSON.parse(localStorage.getItem("sales")) || [];
+    sales.push({ metode: metode, jumlah: jumlah, waktu: new Date().toLocaleString() });
+    localStorage.setItem("sales", JSON.stringify(sales));
+  }
+
+  // Tampilkan data penjualan
+  function tampilData() {
+    let sales = JSON.parse(localStorage.getItem("sales")) || [];
+    let list = document.getElementById("salesList");
+    let total = 0;
+    list.innerHTML = "";
+    sales.forEach(s => {
+      list.innerHTML += `<p>${s.waktu} - Rp ${s.jumlah} (${s.metode})</p>`;
+      total += s.jumlah;
+    });
+    document.getElementById("salesTotal").innerText = total;
+    document.getElementById("penjualan").classList.remove("hide");
+  }
+
+  // Hapus semua data
+  function clearSales() {
+    if (confirm("Yakin hapus semua data?")) {
+      localStorage.removeItem("sales");
+      tampilData();
+    }
+  }
+
+  // Load awal
+  tampilData();
+</script>
+
+</body>
+</html>
   <!-- konten website lo -->
 
   <footer class="footer">
@@ -251,6 +309,7 @@
 </html>
 
 <link rel="stylesheet" href="style.css">
+
 
 
 
