@@ -3,145 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NineFoosionExpo - Kedai Blar Blar</title>
+  <title>Kedai Blar Blar</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Fredoka+One&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header>
-    <div class="header-content">
-      <h1 class="brand-title">Kedai Blar Blar</h1>
-      <nav>
-        <ul>
-          <li><a href="#" onclick="showPage('home')">Home</a></li>
-          <li><a href="#" onclick="showPage('menu')">Menu & Promo</a></li>
-          <li><a href="#" onclick="showPage('kasir')">Mesin Kasir</a></li>
-          <li><a href="#" onclick="showPage('penjualan')">Data Penjualan</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <!-- Landing Page -->
+  <section class="landing">
+    <h1>Kedai Blar Blar</h1>
+    <p>Selamat datang! Nikmati jajanan favoritmu ala SMP!</p>
+  </section>
 
-  <main>
-    <!-- Halaman Home -->
-    <div id="home" class="page">
-      <div class="hero-section">
-        <h2 class="event-title">Selamat Datang di Kedai Blar Blar</h2>
-        <p class="event-subtitle">Jelajahi jajanan sekolah paling seru di Market Day SMP Islam Plus Baitul Maal.</p>
+  <!-- Menu Makanan & Minuman -->
+  <section class="menu">
+    <h2>Menu Kami</h2>
+    <div class="products">
+      <div class="product">
+        <img src="bakso.png" alt="Bakso">
+        <h3>Bakso</h3>
+        <p>Rp 5.000</p>
+        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Bakso+(Rp+5.000)" class="btn-wa">Pesan via WA</a>
+      </div>
+      <div class="product">
+        <img src="tape.png" alt="Tape Ketan Hitam">
+        <h3>Tape Ketan Hitam</h3>
+        <p>Rp 3.000</p>
+        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Tape+Ketan+Hitam+(Rp+3.000)" class="btn-wa">Pesan via WA</a>
+      </div>
+      <div class="product">
+        <img src="teh.png" alt="Es Teh">
+        <h3>Es Teh</h3>
+        <p>Rp 5.000</p>
+        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+gelas+Es+Teh+(Rp+5.000)" class="btn-wa">Pesan via WA</a>
       </div>
     </div>
+  </section>
 
-    <!-- Halaman Menu & Promo -->
-    <div id="menu" class="page" style="display:none;">
-      <h2>Menu & Promo Spesial</h2>
-      <div class="menu-grid">
-        <!-- Bakso -->
-        <div class="menu-item">
-          <img src="bakso.png" alt="Bakso Enak" onerror="this.src='https://placehold.co/400x300/6EC1E4/FFF8F0?text=Bakso'">
+  <!-- Promo & Paket Hemat -->
+  <section class="promo">
+    <h2>Promo & Paket Hemat</h2>
+    <div class="products">
+      <div class="product">
+        <img src="tape.png" alt="Tape Ketan Hitam Promo">
+        <h3>Tape Ketan Hitam</h3>
+        <p>Beli 1 Rp 3.000, Beli 2 Rp 5.000</p>
+        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+2+porsi+Tape+Ketan+Hitam+Promo+(Rp+5.000)" class="btn-wa">Pesan via WA</a>
+      </div>
+      <div class="product">
+        <img src="bakso.png" alt="Bundling Bakso + Es Teh">
+         <img src="teh.png" alt="Bundling Bakso + Es Teh">
+        <h3>Bundling Bakso + Es Teh</h3>
+        <p>Harga normal Rp 10.000, promo hanya Rp 8.000</p>
+        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+Paket+Bundling+Bakso+%2B+Es+Teh+(Rp+8.000)" class="btn-wa">Pesan via WA</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mesin Kasir -->
+  <section class="kasir">
+    <h2>Mesin Kasir</h2>
+    <div class="login">
+      <input type="password" id="password" placeholder="Masukkan password">
+      <button id="loginBtn">Login</button>
+    </div>
+    <div id="kasirContent" class="hidden">
+      <div class="products">
+        <div class="product">
           <h3>Bakso</h3>
-          <p class="description">Daging sapi giling kenyal dengan kuah hangat, mie, tahu, dan sayuran segar.</p>
-          <p class="price">Rp 5.000</p>
-          <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Bakso+(Rp+5.000)" target="_blank" class="wa-button">Pesan via WhatsApp</a>
+          <button onclick="addItem('Bakso', 5000)">Tambah</button>
         </div>
-        <!-- Es Teh -->
-        <div class="menu-item">
-          <img src="teh.png" alt="Es Teh Segar" onerror="this.src='https://placehold.co/400x300/6EC1E4/FFF8F0?text=Es+Teh'">
-          <h3>Es Teh</h3>
-          <p class="description">Minuman teh segar dengan es batu, pas banget buat diminum pas cuaca panas.</p>
-          <p class="price">Rp 5.000</p>
-          <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+gelas+Es+Teh+(Rp+5.000)" target="_blank" class="wa-button">Pesan via WhatsApp</a>
-        </div>
-        <!-- Tape Ketan Hitam -->
-        <div class="menu-item">
-          <img src="tape.png" alt="Tape Ketan Hitam" onerror="this.src='https://placehold.co/400x300/6EC1E4/FFF8F0?text=Tape'">
+        <div class="product">
           <h3>Tape Ketan Hitam</h3>
-          <p class="description">Fermentasi ketan hitam dengan rasa manis-asam khas yang lembut.</p>
-          <p class="price">Rp 3.000</p>
-          <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Tape+Ketan+Hitam+(Rp+3.000)" target="_blank" class="wa-button">Pesan via WhatsApp</a>
+          <button onclick="addItem('Tape Ketan Hitam', 3000)">Tambah</button>
         </div>
-        <!-- PROMO Tape -->
-        <div class="menu-item promo">
-          <img src="tape.png" alt="Promo Tape" onerror="this.src='https://placehold.co/400x300/FFB6B9/333333?text=PROMO!'" class="promo-img">
-          <h3>PROMO: Tape Ketan Hitam</h3>
-          <p class="description">Lebih hemat! Beli 2 porsi Tape Ketan Hitam cuma bayar segini!</p>
-          <p class="price">2 Porsi Rp 5.000</p>
-          <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+2+porsi+Tape+Ketan+Hitam+Promo+(Rp+5.000)" target="_blank" class="wa-button">Pesan Promo Ini</a>
+        <div class="product">
+          <h3>Es Teh</h3>
+          <button onclick="addItem('Es Teh', 5000)">Tambah</button>
         </div>
-        <!-- PROMO Bundling -->
-        <div class="menu-item promo">
-          <div class="promo-images">
-             <img src="bakso.png" alt="Bundling Bakso" onerror="this.src='https://placehold.co/100x100/6EC1E4/FFF8F0&text=Bakso'">
-             <span class="plus">+</span>
-             <img src="teh.png" alt="Bundling Teh" onerror="this.src='https://placehold.co/100x100/6EC1E4/FFF8F0&text=Es+Teh'">
-          </div>
-          <h3>PROMO: Paket Bundling</h3>
-          <p class="description">Makan kenyang, minum segar! Bakso + Es Teh jadi lebih murah.</p>
-          <p class="price">Rp 8.000 <span class="old-price">Rp 10.000</span></p>
-          <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+Paket+Bundling+Bakso+%2B+Es+Teh+(Rp+8.000)" target="_blank" class="wa-button">Pesan Promo Ini</a>
+            <div class="product">
+          <h3>Bundling Tape Ketan Hitam</h3>
+          <button onclick="addItem('Tape Ketan Hitam', 5000)">Tambah</button>
+        </div>
+            <div class="product">
+          <h3>Bundling Bakso + Es Teh</h3>
+          <button onclick="addItem('Tape Ketan Hitam', 10000)">Tambah</button>
         </div>
       </div>
+      <div class="cart">
+         <h3>Keranjang</h3>
+        <ul id="cartItems"></ul>
+        <p>Total: Rp <span id="total">0</span></p>
+        <button onclick="checkout()">Checkout</button>
+      </div>
     </div>
+  </section>
 
-    <!-- Halaman Kasir -->
-    <div id="kasir" class="page" style="display:none;">
-      <h2>Mesin Kasir Internal</h2>
-      <div class="kasir-layout">
-        <div class="product-selection">
-          <h3>Pilih Produk:</h3>
-          <div id="daftar-produk-kasir" class="menu-grid">
-            <!-- Produk untuk kasir akan dimuat di sini oleh JS -->
-          </div>
-        </div>
-        <div class="keranjang-container">
-          <h3>Keranjang Belanja</h3>
-          <div id="keranjang-item-container">
-            <p>Keranjang masih kosong.</p>
-          </div>
-          <hr>
-          <div class="total-section">
-            <strong>Total Pembayaran:</strong>
-            <span id="total-pembayaran">Rp 0</span>
-          </div>
-          <div class="payment-buttons">
-            <button onclick="checkout('Tunai')">Bayar Tunai</button>
-            <button onclick="checkout('QRIS')">Bayar QRIS</button>
-          </div>
-          <div id="qris-section" style="display:none;">
-            <p>Scan QRIS untuk membayar:</p>
-            <img src="qris.png" alt="QRIS Code" width="200" onerror="this.src='https://placehold.co/200x200/ffffff/333333?text=QRIS+Disini'">
-            <button class="konfirmasi-btn" onclick="finalisasiCheckout('QRIS')">Konfirmasi Pembayaran</button>
-          </div>
-        </div>
-      </div>
+  <!-- Data Penjualan -->
+  <section class="data-penjualan">
+    <h2>Data Penjualan</h2>
+    <div id="loginData">
+      <input type="password" id="passwordData" placeholder="Masukkan password">
+      <button id="loginDataBtn">Login</button>
     </div>
-
-    <!-- Halaman Data Penjualan -->
-    <div id="penjualan" class="page" style="display:none;">
-      <h2>Laporan Data Penjualan</h2>
-      <div id="penjualan-container">
-          <h3>Ringkasan Penjualan</h3>
-          <p><strong>Total Pemasukan:</strong> <span id="total-pemasukan">Rp 0</span></p>
-          <hr>
-          <h3>Rincian Barang Terjual</h3>
-          <table id="rincian-penjualan">
-              <thead>
-                  <tr>
-                      <th>Nama Barang</th>
-                      <th>Jumlah Terjual</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <!-- Data rincian akan dimuat di sini -->
-              </tbody>
-          </table>
-      </div>
-      <button class="hapus-btn" onclick="hapusRiwayat()">Hapus Semua Riwayat</button>
+    <div id="dataContent" class="hidden">
+      <table>
+        <thead>
+          <tr>
+            <th>Produk</th>
+            <th>Jumlah Terjual</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody id="dataTable"></tbody>
+      </table>
+      <button onclick="clearData()">Hapus History</button>
     </div>
-  </main>
-  <footer> <p>Kedai Blar Blar 2025 - NineFoosion</p></footer>
+  </section>
+  <footer> <p>Kedai Blar Blar 2025 - NineFoosion</p> </footer>
 
   <script src="script.js"></script>
 </body>
