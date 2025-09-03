@@ -1,175 +1,48 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #FFF8F0;
-  color: #333333;
+  background: #FFF8F0;
+  color: #333;
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
 header {
   background: #6EC1E4;
   color: white;
-  padding: 15px;
-  text-align: center;
+  padding: 1rem;
 }
 
-nav a {
-  margin: 0 10px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-nav a:hover {
-  color: #FFB6B9;
-}
-
-.page {
-  padding: 20px;
-}
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-}
-
-.card {
-  background: #fff;
-  border: 2px solid #FFB6B9;
-  border-radius: 12px;
-  padding: 15px;
-  text-align: center;
-}
-
-.card img {
-  max-width: 100%;
-  border-radius: 10px;
-}
-
-button {
-  background: #6EC1E4;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  margin: 5px 0;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #FFB6B9;
-}
-
-.kasir-grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-/* Modal QRIS */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 10;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5);
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  margin: 10% auto;
-  width: 300px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.close {
-  float: right;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-/* Mesin Kasir & Data Penjualan */
-.kasir-container, .penjualan-container {
-  max-width: 800px;
-  margin: 20px auto;
-  background: #FFF8F0;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 15px 0;
-}
-
-table th, table td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
-}
-
-table th {
-  background: #6EC1E4;
-  color: #fff;
-}
-
-.total-box {
-  text-align: right;
-  font-weight: bold;
-  font-size: 18px;
-  margin: 15px 0;
-}
-
-.payment-method {
-  margin: 15px 0;
-}
-
-.payment-method label {
-  margin-right: 15px;
-  font-weight: bold;
-}
-
-button {
+nav button {
   background: #FFB6B9;
   border: none;
   padding: 10px 15px;
+  margin: 5px;
   border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
 }
 
-button:hover {
-  background: #ff9ea2;
+.menu-item {
+  border: 2px solid #6EC1E4;
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 400px;
+  background: white;
 }
+
+.menu-item img {
+  width: 100%;
+  border-radius: 12px;
+}
+
 .wa-btn {
   display: inline-block;
-  margin-top: 5px;
+  margin: 5px;
   padding: 8px 12px;
   background: #25D366;
   color: white;
-  text-decoration: none;
   border-radius: 6px;
-  font-size: 14px;
+  text-decoration: none;
 }
-.wa-btn:hover {
-  background: #1ebe5c;
-}
-
-
