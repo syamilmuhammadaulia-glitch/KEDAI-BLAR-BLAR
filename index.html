@@ -79,55 +79,63 @@
     </ul>
   </section>
 
-  <!-- KASIR -->
-  <section id="kasir" class="section container hide">
-    <h2>💰 Mesin Kasir</h2>
+<!-- === KASIR === -->
+<section id="kasir" class="section hide">
+  <div class="container">
+    <h2>🛒 Mesin Kasir</h2>
     <div id="kasir-lock" class="lock">
-      <p>Masukkan password untuk mengakses kasir.</p>
-      <input type="password" id="kasir-pass" placeholder="Password">
-      <button onclick="unlockKasir()" class="btn btn-primary">Masuk</button>
+      <p>Halaman ini dilindungi password.</p>
+      <input type="password" id="kasir-pass" placeholder="Masukkan password">
+      <button class="btn btn-primary" onclick="unlockKasir()">Masuk</button>
     </div>
-    <div id="kasir-content" class="hide">
-      <div class="cashier-grid">
-        <div>
-          <h3>Pilih Produk</h3>
-          <div class="list">
-            <button onclick="addItem('Bakso',5000)" class="btn add">+ Bakso</button>
-            <button onclick="addItem('Tape Ketan Hitam',3000)" class="btn add">+ Tape Ketan Hitam</button>
-            <button onclick="addItem('Es Teh',5000)" class="btn add">+ Es Teh</button>
-            <button onclick="addItem('Jasuke',5000)" class="btn add">+ Jasuke</button>
-          </div>
-        </div>
-        <div>
-          <h3>Keranjang</h3>
-          <div id="cart"></div>
-          <p><b>Total: Rp <span id="total">0</span></b></p>
-          <label>Metode Pembayaran:</label>
-          <select id="payment">
-            <option value="Tunai">Tunai</option>
-            <option value="QRIS">QRIS</option>
-          </select>
-          <div id="qris-box" class="hide">
-            <img class="qris-img" src="qris.png" alt="QRIS">
-          </div>
-          <button onclick="checkout()" class="btn btn-primary">Selesaikan Transaksi</button>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- DATA PENJUALAN -->
-  <section id="penjualan" class="section container hide">
+    <div id="kasir-content" class="hide">
+      <h3>Pilih Produk</h3>
+      <div class="list">
+        <button class="btn add" onclick="addItem('Bakso', 5000)">+ Bakso Rp 5.000</button>
+        <button class="btn add" onclick="addItem('Tape Ketan Hitam', 3000)">+ Tape Ketan Hitam Rp 3.000</button>
+        <button class="btn add" onclick="addItem('Es Teh', 5000)">+ Es Teh Rp 5.000</button>
+        <button class="btn add" onclick="addItem('Jasuke', 5000)">+ Jasuke Rp 5.000</button>
+        <button class="btn add" onclick="addItem('Paket Bundling Bakso + Es Teh', 8000)">+ Paket Bundling Rp 8.000</button>
+      </div>
+
+      <h3>Keranjang</h3>
+      <div id="cart" class="list"></div>
+      <p><b>Total: Rp <span id="total">0</span></b></p>
+
+      <label for="payment">Metode Pembayaran:</label>
+      <select id="payment">
+        <option value="tunai">Tunai</option>
+        <option value="qris">QRIS</option>
+      </select>
+
+      <!-- QRIS image -->
+      <div id="qris-box" class="hide">
+        <p>Scan QRIS untuk bayar:</p>
+        <img class="qris-img" src="https://drive.google.com/uc?export=view&id=1Jk33oIiTlFwR3f2q5DnPRuefUViGQ9x-" alt="QRIS">
+      </div>
+
+      <button class="btn btn-accent" onclick="checkout()">Selesaikan Transaksi</button>
+    </div>
+  </div>
+</section>
+
+<!-- === DATA PENJUALAN === -->
+<section id="penjualan" class="section hide">
+  <div class="container">
     <h2>📊 Data Penjualan</h2>
     <div id="penjualan-lock" class="lock">
-      <p>Masukkan password untuk mengakses data penjualan.</p>
-      <input type="password" id="penjualan-pass" placeholder="Password">
-      <button onclick="unlockPenjualan()" class="btn btn-primary">Masuk</button>
+      <p>Data Penjualan dilindungi password.</p>
+      <input type="password" id="penjualan-pass" placeholder="Masukkan password">
+      <button class="btn btn-primary" onclick="unlockPenjualan()">Masuk</button>
     </div>
+
     <div id="penjualan-content" class="hide">
       <div id="rekap"></div>
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -139,4 +147,5 @@
 
 </body>
 </html>
+
 
