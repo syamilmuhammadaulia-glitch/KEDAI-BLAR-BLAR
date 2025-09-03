@@ -254,6 +254,18 @@
 
   // Load data penjualan dari localStorage
   let sales = JSON.parse(localStorag
+<script>
+function simpanTransaksi(items, total, payment) {
+  const sales = JSON.parse(localStorage.getItem("salesData")) || [];
+  sales.push({
+    date: new Date().toLocaleString("id-ID"),
+    items: items,        // contoh: [{name:"Bakso"}, {name:"Es Teh"}]
+    total: Number(total) || 0,
+    payment: payment     // "Tunai" atau "QRIS"
+  });
+  localStorage.setItem("salesData", JSON.stringify(sales));
+}
+</script>
 
 
   <!-- konten website lo -->
@@ -276,6 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (clearBtn) clearBtn.addEventListener('click', clearAllSales);
 });
 </script>
+
 
 
 
