@@ -107,6 +107,11 @@ function clearAllSales() {
     renderSalesData();
   }
 }
+// Setelah user klik "Bayar Tunai"
+simpanTransaksi(cartItems, grandTotal, "Tunai");
+
+// Setelah user klik "Bayar QRIS"
+simpanTransaksi(cartItems, grandTotal, "QRIS");
 
 // === QRIS toggle ===
 document.getElementById("payment").addEventListener("change", function() {
@@ -130,6 +135,7 @@ document.querySelectorAll('nav a').forEach(link => {
     }
   });
 });
+
 
 
 
