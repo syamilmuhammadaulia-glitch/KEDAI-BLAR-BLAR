@@ -209,36 +209,36 @@
 </section>
 
 <!-- === Data Penjualan === -->
-<section id="penjualan" class="section hide">
-  <div class="container">
-    <h2>📊 Data Penjualan (Login Required)</h2>
+        <section id="penjualan" class="section hide" style="background-color: var(--background-color);">
+            <div class="container">
+                <h2>📊 Data Penjualan</h2>
 
-    <div id="sales-lock" class="card lock">
-      <p class="subtle">Masukkan password untuk melihat data penjualan.</p>
-      <input id="sales-pass" class="input" type="password" placeholder="Masukkan password" />
-      <div style="margin-top:8px; display:flex; gap:8px;">
-        <button class="btn btn-primary" id="sales-unlock-btn">Masuk</button>
-        <button class="btn" onclick="document.querySelectorAll('section').forEach(s=>s.classList.add('hide')); document.getElementById('home').classList.remove('hide')">Kembali</button>
-      </div>
-      <p id="sales-msg" class="subtle" style="color:#c0392b; display:none;"></p>
-    </div>
+                <div id="sales-lock" class="card lock">
+                    <p class="subtle">Masukkan password untuk melihat data penjualan.</p>
+                    <input id="sales-pass" class="input" type="password" placeholder="Masukkan password" />
+                    <div style="margin-top:8px; display:flex; gap:8px;">
+                        <button class="btn btn-primary" id="sales-unlock-btn">Masuk</button>
+                        <button class="btn bg-gray-300 hover:bg-gray-400 text-gray-800" onclick="document.querySelectorAll('.section').forEach(s=>s.classList.add('hide')); document.getElementById('kasir').classList.remove('hide')">Kembali</button>
+                    </div>
+                    <p id="sales-msg" class="subtle" style="color:#c0392b; display:none;"></p>
+                </div>
 
-    <div id="sales-content" class="card hide">
-      <h3>Rekap Produk</h3>
-      <div id="rekap" class="list"></div>
+                <div id="sales-content" class="card hide">
+                    <h3>Rekap Produk</h3>
+                    <div id="rekap" class="list"></div>
 
-      <h3 style="margin-top:12px;">Transaksi Terbaru</h3>
-      <div id="salesList" class="list"></div>
+                    <h3 style="margin-top:12px;">Transaksi Terbaru</h3>
+                    <div id="salesList" class="list"></div>
 
-      <div style="display:flex; gap:8px; align-items:center; margin-top:12px;">
-        <strong>Total Pendapatan: Rp <span id="salesTotal">0</span></strong>
-        <div style="flex:1"></div>
-        <button class="btn" id="clear-sales-btn">Hapus Semua Data</button>
-      </div>
-    </div>
-  </div>
-</section>
-
+                    <div style="display:flex; gap:8px; align-items:center; margin-top:12px;">
+                        <strong>Total Pendapatan: Rp <span id="salesTotal">0</span></strong>
+                        <div style="flex:1"></div>
+                        <button class="btn bg-red-500 hover:bg-red-600 text-white" id="clear-sales-btn">Hapus Semua Data</button>
+                    </div>
+                    <p id="user-id" class="subtle text-center mt-4"></p>
+                </div>
+            </div>
+        </section>
 
   <!-- konten website lo -->
 
@@ -251,6 +251,7 @@
 </html>
 
 <link rel="stylesheet" href="style.css">
+
 
 
 
