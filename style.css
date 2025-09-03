@@ -74,4 +74,9 @@ footer {
   background: #6EC1E4;
   color: white;
 }
+.page.hidden {
+  display: none;
+}
+
+
 
