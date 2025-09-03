@@ -1,108 +1,134 @@
-// ================= PASSWORD =================
+// ==========================
+// Navigasi Halaman
+// ==========================
+function showPage(pageId) {
+  // Sembunyikan semua section
+  document.querySelectorAll("section").forEach(sec => {
+    sec.style.display = "none";
+  });
+
+  // Tampilkan section yang dipilih
+  let target = document.getElementById(pageId);
+  if (target) target.style.display = "block";
+}
+
+// ==========================
+// Password Protection
+// ==========================
 function checkPassword(pageId) {
   const pass = prompt("Masukkan password:");
-  if (pass === "KELOMPOK29A1") {
+  if (pass === "KELOMPOK29A2") {
     showPage(pageId);
   } else {
-    alert("❌ Password salah!");
+    alert("Password salah!");
   }
 }
 
-// ================= NAVIGASI =================
-function showPage(pageId) {
-  document.querySelectorAll(".page").forEach(p => p.style.display = "none");
-  document.getElementById(pageId).style.display = "block";
-}
-
-// ================= MESIN KASIR =================
+// ==========================
+// Data Kasir & Penjualan
+// ==========================
 let cart = [];
-let salesData = JSON.parse(localStorage.getItem("salesData")) || {
-  bakso: 0,
-  tape: 0,
-  tapePromo: 0,
-  esteh: 0,
-  bundling: 0,
-  jasuke: 0,
-  totalRevenue: 0
-};
+let salesData = {};
 
-function addToCart(product, price, key) {
-  cart.push({ product, price, key });
+// Tambah produk ke keranjang
+function addToCart(product, price) {
+  let existing = cart.find(item => item.product === product);
+  if (existing) {
+    existing.qty++;
+    existing.subtotal += price;
+  } else {
+    cart.push({ product, price, qty: 1, subtotal: price });
+  }
   renderCart();
 }
 
+// Render keranjang ke tabel
 function renderCart() {
   let cartList = document.getElementById("cart-list");
-  let totalEl = document.getElementById("total");
-  cartList.innerHTML = "";
   let total = 0;
+  cartList.innerHTML = "";
 
-  cart.forEach((item, i) => {
-    let li = document.createElement("li");
-    li.textContent = `${item.product} - Rp ${item.price}`;
-    let del = document.createElement("button");
-    del.textContent = "❌";
-    del.onclick = () => { cart.splice(i, 1); renderCart(); };
-    li.appendChild(del);
-    cartList.appendChild(li);
-    total += item.price;
+  cart.forEach(item => {
+    total += item.subtotal;
+    cartList.innerHTML += `
+      <tr>
+        <td>${item.product}</td>
+        <td>Rp ${item.price}</td>
+        <td>${item.qty}</td>
+        <td>Rp ${item.subtotal}</td>
+      </tr>`;
   });
 
-  totalEl.textContent = "Rp " + total;
+  document.getElementById("total").textContent = "Rp " + total;
 }
 
-function checkout(method) {
-  if (cart.length === 0) return alert("Keranjang kosong!");
+// Selesaikan transaksi
+function checkout() {
+  if (cart.length === 0) {
+    alert("Keranjang kosong!");
+    return;
+  }
 
-  let total = cart.reduce((sum, it) => sum + it.price, 0);
-  cart.forEach(it => { if (salesData[it.key] !== undefined) salesData[it.key]++; });
-  salesData.totalRevenue += total;
-  localStorage.setItem("salesData", JSON.stringify(salesData));
+  // Simpan ke data penjualan
+  cart.forEach(item => {
+    if (!salesData[item.product]) {
+      salesData[item.product] = { qty: 0, total: 0 };
+    }
+    salesData[item.product].qty += item.qty;
+    salesData[item.product].total += item.subtotal;
+  });
 
+  // Tambah riwayat transaksi
+  let history = document.getElementById("sales-history");
+  let li = document.createElement("li");
+  li.textContent = "Transaksi: " + cart.map(i => `${i.qty}x ${i.product}`).join(", ") + 
+                   " | Total Rp " + cart.reduce((sum,i)=>sum+i.subtotal,0);
+  history.appendChild(li);
+
+  // Reset keranjang
   cart = [];
   renderCart();
   renderSalesData();
-
-  if (method === "tunai") alert("✅ Transaksi Tunai Rp " + total);
-  if (method === "qris") {
-    document.getElementById("qrisModal").style.display = "block";
-    alert("✅ Transaksi QRIS Rp " + total);
-  }
+  alert("Transaksi berhasil!");
 }
 
-// ================= DATA PENJUALAN =================
+// Render data penjualan
 function renderSalesData() {
-  const d = salesData;
-  let div = document.getElementById("sales-data");
-  div.innerHTML = `
-    <p>Bakso Terjual: ${d.bakso}</p>
-    <p>Tape Ketan Hitam: ${d.tape}</p>
-    <p>Tape Promo (2 pcs): ${d.tapePromo}</p>
-    <p>Es Teh: ${d.esteh}</p>
-    <p>Bundling Bakso + Es Teh: ${d.bundling}</p>
-    <p>Jasuke: ${d.jasuke}</p>
-    <h3>Total Pendapatan: Rp ${d.totalRevenue}</h3>
-  `;
-}
+  let summary = document.getElementById("sales-summary");
+  summary.innerHTML = "";
+  let totalUang = 0;
 
-function clearSalesData() {
-  if (confirm("Yakin reset data penjualan?")) {
-    salesData = { bakso:0, tape:0, tapePromo:0, esteh:0, bundling:0, jasuke:0, totalRevenue:0 };
-    localStorage.setItem("salesData", JSON.stringify(salesData));
-    renderSalesData();
+  for (let produk in salesData) {
+    summary.innerHTML += `
+      <tr>
+        <td>${produk}</td>
+        <td>${salesData[produk].qty}</td>
+        <td>Rp ${salesData[produk].total}</td>
+      </tr>`;
+    totalUang += salesData[produk].total;
+  }
+
+  if (Object.keys(salesData).length > 0) {
+    summary.innerHTML += `
+      <tr style="font-weight:bold;">
+        <td colspan="2">TOTAL</td>
+        <td>Rp ${totalUang}</td>
+      </tr>`;
   }
 }
 
-// ================= MODAL QRIS =================
-function closeQris() {
-  document.getElementById("qrisModal").style.display = "none";
+// Hapus semua riwayat & data penjualan
+function clearSales() {
+  salesData = {};
+  document.getElementById("sales-history").innerHTML = "";
+  renderSalesData();
 }
 
-// ================= INIT =================
+// ==========================
+// Default Page saat load
+// ==========================
 window.onload = () => {
-  showPage("home");
+  showPage("menu"); // langsung buka halaman Menu
   renderCart();
   renderSalesData();
 };
-
-
