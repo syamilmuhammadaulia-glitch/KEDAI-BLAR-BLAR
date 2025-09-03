@@ -78,3 +78,4 @@ document.getElementById('openKasirBtn').addEventListener('click',()=>{document.g
 document.getElementById('openDataBtn').addEventListener('click',()=>{document.getElementById('dataContent').classList.remove('hidden');});
 function closePanel(id){document.getElementById(id).classList.add('hidden');}
 
+
