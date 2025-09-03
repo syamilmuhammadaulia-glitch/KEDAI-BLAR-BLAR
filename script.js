@@ -2,6 +2,26 @@ const PASSWORD = "KELOMPOK29A1";
 let cart = [];
 let sales = JSON.parse(localStorage.getItem("sales")) || [];
 
+// === Navigasi antar halaman ===
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", function(e) {
+    e.preventDefault();
+    const target = this.getAttribute("href").substring(1);
+
+    // sembunyikan semua section
+    document.querySelectorAll("section").forEach(sec => sec.classList.add("hide"));
+
+    // tampilkan section yang dipilih
+    document.getElementById(target).classList.remove("hide");
+  });
+});
+
+// tampilkan home waktu awal
+document.querySelectorAll("section").forEach(sec => sec.classList.add("hide"));
+document.getElementById("home").classList.remove("hide");
+document.getElementById("menu").classList.remove("hide");
+document.getElementById("promo").classList.remove("hide");
+
 // === Kasir ===
 function unlockKasir() {
   const pass = document.getElementById("kasir-pass").value;
