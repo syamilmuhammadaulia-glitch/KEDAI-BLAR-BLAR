@@ -132,4 +132,19 @@ window.onload = () => {
   renderCart();
   renderSalesData();
 };
+// Pemesanan langsung dari form
+function orderNow() {
+  let select = document.getElementById("order-product").value.split("|");
+  let product = select[0];
+  let price = parseInt(select[1]);
+  let qty = parseInt(document.getElementById("order-qty").value);
+
+  for (let i = 0; i < qty; i++) {
+    addToCart(product, price);
+  }
+
+  alert(qty + "x " + product + " ditambahkan ke keranjang!");
+  showPage("kasir"); // otomatis buka halaman kasir
+}
+
 
