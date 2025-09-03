@@ -157,12 +157,13 @@
   </section>
 
 <!-- === Kasir === -->
-<section id="kasir" class="hide">
-  <div id="kasir-lock">
-    <h2>Masukkan Password Kasir</h2>
-    <input type="password" id="kasir-pass">
-    <button onclick="unlockKasir()">Masuk</button>
-  </div>
+<div id="kasir-lock" class="lock">
+  <h2>🔒 Akses Kasir</h2>
+  <input type="password" id="kasir-pass" placeholder="Masukkan Password">
+  <br>
+  <button onclick="unlockKasir()">Masuk</button>
+</div>
+
   <div id="kasir-content" class="hide">
     <h2>Mesin Kasir</h2>
     <div class="produk">
@@ -245,6 +246,7 @@
 </body>
 </html>
 <link rel="stylesheet" href="style.css">
+
 
 
 
