@@ -79,7 +79,7 @@ body{
   display:inline-block;
   margin-top:5px;
   padding:7px 12px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  background-color: var(--primary);
   color:#fff;
   border-radius:8px;
   text-decoration:none;
@@ -88,6 +88,7 @@ body{
 }
 
 .btn-wa:hover{
+  background-color: var(--accent);
   transform: scale(1.05);
   box-shadow:0 4px 12px rgba(0,0,0,0.3);
 }
@@ -104,7 +105,7 @@ body{
 
 .floating-buttons button{
   padding:12px;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  background-color: var(--primary);
   color:#fff;
   border:none;
   border-radius:8px;
@@ -114,6 +115,7 @@ body{
 }
 
 .floating-buttons button:hover{
+  background-color: var(--accent);
   transform: scale(1.05);
   box-shadow:0 4px 12px rgba(0,0,0,0.3);
 }
@@ -157,7 +159,7 @@ body{
 .cart button{
   margin:5px 5px 0 0;
   padding:6px 12px;
-  background: var(--accent);
+  background-color: var(--accent);
   color:#fff;
   border:none;
   border-radius:6px;
@@ -166,6 +168,7 @@ body{
 }
 
 .cart button:hover{
+  background-color: var(--primary);
   transform: scale(1.05);
   box-shadow:0 4px 12px rgba(0,0,0,0.2);
 }
