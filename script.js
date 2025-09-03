@@ -6,7 +6,7 @@ let salesCount = {};
 function showPage(page) {
   if (page === 'kasir' || page === 'penjualan') {
     let pass = prompt("Masukkan password:");
-    if (pass !== "KELOMPOK29A2") {
+    if (pass !== "KELOMPOK29A1") {
       alert("Password salah!");
       return;
     }
@@ -86,5 +86,6 @@ function orderNow() {
     <p>Anda memesan ${qty} ${name} - Total Rp ${total.toLocaleString()}</p>
   `;
 }
+
 
 
