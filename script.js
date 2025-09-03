@@ -1,7 +1,7 @@
 // ================= PASSWORD =================
 function checkPassword(pageId) {
   const pass = prompt("Masukkan password:");
-  if (pass === "KELOMPOK29A2") {
+  if (pass === "KELOMPOK29A1") {
     showPage(pageId);
   } else {
     alert("❌ Password salah!");
@@ -104,4 +104,5 @@ window.onload = () => {
   renderCart();
   renderSalesData();
 };
+
 
