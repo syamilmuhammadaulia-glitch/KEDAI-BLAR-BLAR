@@ -106,6 +106,42 @@ document.getElementById("payment").addEventListener("change", function() {
     document.getElementById("qris-box").classList.add("hide");
   }
 });
+// Render Data Penjualan
+function renderSalesData() {
+  const salesList = document.getElementById("salesList");
+  salesList.innerHTML = "";
+  let total = 0;
+
+  sales.forEach((item, index) => {
+    total += item.price * item.qty;
+    const div = document.createElement("div");
+    div.className = "item";
+    div.innerHTML = `
+      <span>${item.name} x${item.qty} - Rp ${item.price * item.qty}</span>
+      <div class="actions">
+        <button class="btn small" onclick="removeSale(${index})">Hapus</button>
+      </div>
+    `;
+    salesList.appendChild(div);
+  });
+
+  document.getElementById("salesTotal").innerText = total;
+}
+
+// Hapus 1 item dari data penjualan
+function removeSale(index) {
+  sales.splice(index, 1);
+  renderSalesData();
+}
+
+// Hapus semua data penjualan
+function clearAllSales() {
+  if (confirm("Yakin mau hapus semua data penjualan?")) {
+    sales = [];
+    renderSalesData();
+  }
+}
+
 
 
 
