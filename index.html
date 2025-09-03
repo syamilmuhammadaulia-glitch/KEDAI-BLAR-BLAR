@@ -69,40 +69,62 @@
   </section>
 
   <!-- KASIR -->
-  <section id="kasir" class="page" style="display:none;">
-    <h2>Mesin Kasir</h2>
-    <div class="kasir-grid">
-      <div>
-        <button onclick="addToCart('Bakso', 5000, 'bakso')">+ Bakso</button>
-        <button onclick="addToCart('Tape Ketan Hitam', 3000, 'tape')">+ Tape</button>
-        <button onclick="addToCart('Tape Promo (2 pcs)', 5000, 'tapePromo')">+ Tape Promo</button>
-        <button onclick="addToCart('Es Teh', 5000, 'esteh')">+ Es Teh</button>
-        <button onclick="addToCart('Bundling Bakso + Es Teh', 8000, 'bundling')">+ Bundling</button>
-        <button onclick="addToCart('Jasuke', 5000, 'jasuke')">+ Jasuke</button>
-      </div>
-      <div>
-        <h3>Keranjang</h3>
-        <ul id="cart-list"></ul>
-        <p>Total: <span id="total">Rp 0</span></p>
-        <button onclick="checkout('tunai')">Bayar Tunai</button>
-        <button onclick="checkout('qris')">Bayar QRIS</button>
-      </div>
-    </div>
-    <div id="qrisModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeQris()">&times;</span>
-        <h3>Scan QRIS untuk Pembayaran</h3>
-        <img src="qris.png" alt="QRIS" style="max-width:200px;">
-      </div>
-    </div>
-  </section>
+<div id="kasir" class="kasir-container" style="display:none;">
+  <h2>🛒 Mesin Kasir</h2>
+  <div class="produk-list">
+    <button onclick="addToCart('Bakso',5000)">+ Bakso Rp 5.000</button>
+    <button onclick="addToCart('Tape Ketan Hitam',3000)">+ Tape Rp 3.000</button>
+    <button onclick="addToCart('Es Teh',5000)">+ Es Teh Rp 5.000</button>
+    <button onclick="addToCart('Jasuke',5000)">+ Jasuke Rp 5.000</button>
+    <button onclick="addToCart('Promo Tape 2',5000)">+ Promo Tape 2 Rp 5.000</button>
+    <button onclick="addToCart('Bundling Bakso + Es Teh',8000)">+ Bundling Rp 8.000</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Produk</th>
+        <th>Harga</th>
+        <th>Jumlah</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody id="cart-list"></tbody>
+  </table>
+
+  <div class="total-box">Total: <span id="total">Rp 0</span></div>
+
+  <div class="payment-method">
+    <label><input type="radio" name="payment" value="tunai" checked> Tunai</label>
+    <label><input type="radio" name="payment" value="qris"> QRIS</label>
+    <img src="img/qris.png" alt="QRIS" style="max-width:120px; display:block; margin-top:10px;">
+  </div>
+
+  <button onclick="checkout()">Selesaikan Transaksi</button>
+</div>
+
 
   <!-- DATA PENJUALAN -->
-  <section id="penjualan" class="page" style="display:none;">
-    <h2>Data Penjualan</h2>
-    <div id="sales-data"></div>
-    <button onclick="clearSalesData()">Reset Data</button>
-  </section>
+<div id="penjualan" class="penjualan-container" style="display:none;">
+  <h2>📊 Data Penjualan</h2>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Produk</th>
+        <th>Jumlah Terjual</th>
+        <th>Total Uang</th>
+      </tr>
+    </thead>
+    <tbody id="sales-summary"></tbody>
+  </table>
+
+  <h3>Riwayat Transaksi</h3>
+  <ul id="sales-history"></ul>
+
+  <button onclick="clearSales()">Hapus Riwayat</button>
+</div>
+
 
   <footer>
     <p>© 2025 NineFoosionExpo | SMP Islam Plus Baitul Maal</p>
@@ -112,6 +134,7 @@
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
