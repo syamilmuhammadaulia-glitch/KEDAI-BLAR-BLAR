@@ -97,3 +97,65 @@ ul {
   cursor: pointer;
 }
 
+/* Mesin Kasir & Data Penjualan */
+.kasir-container, .penjualan-container {
+  max-width: 800px;
+  margin: 20px auto;
+  background: #FFF8F0;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+table th {
+  background: #6EC1E4;
+  color: #fff;
+}
+
+.total-box {
+  text-align: right;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 15px 0;
+}
+
+.payment-method {
+  margin: 15px 0;
+}
+
+.payment-method label {
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+button {
+  background: #FFB6B9;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #ff9ea2;
+}
+
