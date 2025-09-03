@@ -17,69 +17,62 @@ function showPage(page) {
 
   if (page === 'kasir') renderKasir();
   if (page === 'penjualan') renderPenjualan();
-}
+// ====================== MESIN KASIR ======================
+let keranjang = [];
+let riwayatPenjualan = [];
+let jumlahTerjual = {};
 
-function addToCart(name, price) {
-  cart.push({ name, price });
-  alert(`${name} ditambahkan ke keranjang.`);
+function tambahProduk(nama, harga) {
+  keranjang.push({ nama, harga });
+  renderKasir();
 }
 
 function renderKasir() {
-  let html = '<h3>Keranjang Belanja</h3>';
   let total = 0;
-  cart.forEach((item, i) => {
-    html += `<p>${item.name} - Rp ${item.price.toLocaleString()} <button onclick="removeFromCart(${i})">❌</button></p>`;
-    total += item.price;
+  let html = "<h3>Keranjang:</h3>";
+  keranjang.forEach((item, i) => {
+    html += `${item.nama} - Rp${item.harga.toLocaleString()} 
+      <button onclick="hapusProduk(${i})">❌</button><br>`;
+    total += item.harga;
   });
-  html += `<h4>Total: Rp ${total.toLocaleString()}</h4>`;
-  html += `<button onclick="checkout('Tunai')">Bayar Tunai</button>`;
-  html += `<button onclick="checkout('QRIS')">Bayar QRIS</button>`;
-  document.getElementById('kasir-container').innerHTML = html;
+  html += `<p><b>Total: Rp${total.toLocaleString()}</b></p>`;
+  html += `<button onclick="checkout('Tunai')">Bayar Tunai</button>
+           <button onclick="checkout('QRIS')">Bayar QRIS</button>`;
+  document.getElementById("kasir-container").innerHTML = html;
 }
 
-function removeFromCart(i) {
-  cart.splice(i, 1);
+function hapusProduk(i) {
+  keranjang.splice(i, 1);
   renderKasir();
 }
 
-function checkout(method) {
-  if (cart.length === 0) {
-    alert("Keranjang kosong!");
-    return;
-  }
-  cart.forEach(item => {
-    salesHistory.push({ ...item, method, time: new Date().toLocaleString() });
-    salesCount[item.name] = (salesCount[item.name] || 0) + 1;
+function checkout(metode) {
+  if (keranjang.length === 0) return alert("Keranjang kosong!");
+  keranjang.forEach(item => {
+    riwayatPenjualan.push({ ...item, metode, waktu: new Date().toLocaleString() });
+    jumlahTerjual[item.nama] = (jumlahTerjual[item.nama] || 0) + 1;
   });
-  cart = [];
-  alert(`Transaksi berhasil dengan ${method}`);
+  alert("Transaksi berhasil via " + metode);
+  keranjang = [];
   renderKasir();
 }
 
+// ====================== DATA PENJUALAN ======================
 function renderPenjualan() {
-  let html = '<h3>Riwayat Transaksi</h3>';
-  let totalAll = 0;
-  salesHistory.forEach(s => {
-    html += `<p>${s.time} - ${s.name} Rp ${s.price.toLocaleString()} (${s.method})</p>`;
-    totalAll += s.price;
+  let totalSemua = 0;
+  let html = "<h3>Riwayat Transaksi:</h3>";
+  riwayatPenjualan.forEach(r => {
+    html += `${r.waktu} - ${r.nama} Rp${r.harga.toLocaleString()} (${r.metode})<br>`;
+    totalSemua += r.harga;
   });
-  html += `<h3>Total Pendapatan: Rp ${totalAll.toLocaleString()}</h3>`;
-
-  html += '<h3>Jumlah Produk Terjual</h3>';
-  for (let item in salesCount) {
-    html += `<p>${item}: ${salesCount[item]}x</p>`;
+  html += `<p><b>Total Pendapatan: Rp${totalSemua.toLocaleString()}</b></p>`;
+  html += "<h3>Jumlah Produk Terjual:</h3>";
+  for (let nama in jumlahTerjual) {
+    html += `${nama}: ${jumlahTerjual[nama]}x<br>`;
   }
-
-  html += `<button onclick="clearHistory()">Hapus History</button>`;
-  document.getElementById('penjualan-container').innerHTML = html;
+  document.getElementById("penjualan-container").innerHTML = html;
 }
 
-function clearHistory() {
-  if (confirm("Yakin hapus semua data penjualan?")) {
-    salesHistory = [];
-    salesCount = {};
-    renderPenjualan();
-  }
 }
 
 function orderNow() {
@@ -93,4 +86,5 @@ function orderNow() {
     <p>Anda memesan ${qty} ${name} - Total Rp ${total.toLocaleString()}</p>
   `;
 }
+
 
