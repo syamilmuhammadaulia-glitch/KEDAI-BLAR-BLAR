@@ -26,7 +26,7 @@ document.getElementById("home").classList.remove("hide");
 // ================== KASIR ==================
 function unlockKasir() {
   const pass = document.getElementById("kasir-pass").value;
-  if (pass === PASSWORD) {
+  if (pass === "KELOMPOK29A1") {   // <<< password HARUS sama persis
     document.getElementById("kasir-lock").classList.add("hide");
     document.getElementById("kasir-content").classList.remove("hide");
   } else {
@@ -203,4 +203,5 @@ document.getElementById("payment").addEventListener("change", function () {
   const qrisBox = document.getElementById("qris-box");
   this.value === "qris" ? qrisBox.classList.remove("hide") : qrisBox.classList.add("hide");
 });
+
 
