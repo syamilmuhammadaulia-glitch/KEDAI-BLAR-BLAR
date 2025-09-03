@@ -110,5 +110,76 @@ h2{margin:0 0 8px}
   border-radius: 12px 12px 0 0;
   margin-top: 30px;
 }
+/* ====== Global ====== */
+body {
+  font-family: Arial, sans-serif;
+  background: #FFF8F0;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+  max-width: 1200px;
+}
+
+/* ====== Grid & Card ====== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.food-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* ====== Lock (Password Page) ====== */
+.lock {
+  background: #FFF8F0;
+  border: 2px solid #6EC1E4;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+  margin: 40px auto;
+  max-width: 350px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.lock h2 {
+  font-size: 20px;
+  color: #333333;
+  margin-bottom: 15px;
+}
+
+.lock input {
+  padding: 12px;
+  width: 80%;
+  border: 2px solid #6EC1E4;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.lock button {
+  padding: 10px 20px;
+  background: #6EC1E4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.lock button:hover {
+  background: #FFB6B9;
+}
+
 
 
