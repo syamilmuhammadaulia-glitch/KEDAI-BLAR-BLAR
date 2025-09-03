@@ -79,3 +79,4 @@ document.getElementById('openDataBtn').addEventListener('click',()=>{document.ge
 function closePanel(id){document.getElementById(id).classList.add('hidden');}
 
 
+
