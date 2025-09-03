@@ -223,81 +223,6 @@
   </div>
 </section>
 
-<!-- === Modal QRIS === -->
-<div id="qris-modal" class="hide">
-  <div class="box">
-    <h3>Scan QRIS untuk Bayar</h3>
-    <img src="img/qris.png" alt="QRIS" style="width:200px; margin:12px auto;"/>
-    <p>Total: Rp <span id="qrisTotal"></span></p>
-    <button class="btn btn-primary" onclick="selesaiQRIS()">Selesai</button>
-    <button class="btn btn-danger" onclick="closeQRIS()">Tutup</button>
-  </div>
-</div>
-
-<script>
-  let totalBelanja = 25000; // contoh harga total
-
-  // Fungsi bayar tunai
-  function bayarTunai() {
-    simpanTransaksi("Tunai", totalBelanja);
-    alert("Pembayaran tunai berhasil!");
-    tampilData();
-  }
-
-  // Fungsi bayar QRIS (munculkan modal)
-  function bayarQRIS() {
-    document.getElementById("qrisTotal").innerText = totalBelanja;
-    document.getElementById("qris-modal").classList.remove("hide");
-  }
-
-  // Tutup modal QRIS tanpa transaksi
-  function closeQRIS() {
-    document.getElementById("qris-modal").classList.add("hide");
-  }
-
-  // Selesai QRIS = simpan transaksi
-  function selesaiQRIS() {
-    simpanTransaksi("QRIS", totalBelanja);
-    document.getElementById("qris-modal").classList.add("hide");
-    alert("Pembayaran QRIS berhasil!");
-    tampilData();
-  }
-
-  // Simpan transaksi ke localStorage
-  function simpanTransaksi(metode, jumlah) {
-    let sales = JSON.parse(localStorage.getItem("sales")) || [];
-    sales.push({ metode: metode, jumlah: jumlah, waktu: new Date().toLocaleString() });
-    localStorage.setItem("sales", JSON.stringify(sales));
-  }
-
-  // Tampilkan data penjualan
-  function tampilData() {
-    let sales = JSON.parse(localStorage.getItem("sales")) || [];
-    let list = document.getElementById("salesList");
-    let total = 0;
-    list.innerHTML = "";
-    sales.forEach(s => {
-      list.innerHTML += `<p>${s.waktu} - Rp ${s.jumlah} (${s.metode})</p>`;
-      total += s.jumlah;
-    });
-    document.getElementById("salesTotal").innerText = total;
-    document.getElementById("penjualan").classList.remove("hide");
-  }
-
-  // Hapus semua data
-  function clearSales() {
-    if (confirm("Yakin hapus semua data?")) {
-      localStorage.removeItem("sales");
-      tampilData();
-    }
-  }
-
-  // Load awal
-  tampilData();
-</script>
-
-</body>
-</html>
   <!-- konten website lo -->
 
   <footer class="footer">
@@ -309,6 +234,7 @@
 </html>
 
 <link rel="stylesheet" href="style.css">
+
 
 
 
