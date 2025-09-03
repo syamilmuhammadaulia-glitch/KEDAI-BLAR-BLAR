@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- NAVBAR -->
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand">
@@ -43,7 +42,7 @@
     </div>
   </header>
 
-  <!-- MENU -->
+  <!-- MENU (tampilkan di landing) -->
   <section id="menu" class="section container">
     <h2>🍴 Menu Makanan & Minuman</h2>
     <p class="subtle">Klik "Pesan via WhatsApp" untuk chat cepat, atau gunakan Kasir untuk transaksi di tempat.</p>
@@ -54,7 +53,7 @@
         <img src="bakso.png" alt="Bakso" />
         <div class="body">
           <h3>Bakso — Rp 5.000</h3>
-          <p class="desc">Makanan khas Indonesia berbahan dasar daging sapi giling.</p>
+          <p class="desc">Makanan khas Indonesia berbahan dasar daging sapi giling, disajikan dengan kuah hangat dan pelengkap mie, tahu, serta sayuran.</p>
           <div class="actions">
             <a class="btn wa" target="_blank" rel="noopener"
                href="https://wa.me/628996023111?text=Halo%2C%20saya%20mau%20pesan%201%20porsi%20Bakso%20(Rp%205.000)">
@@ -65,12 +64,12 @@
         </div>
       </article>
 
-      <!-- Tape -->
+      <!-- Tape Ketan Hitam -->
       <article class="card food-card">
         <img src="tape.png" alt="Tape Ketan Hitam" />
         <div class="body">
           <h3>Tape Ketan Hitam — Rp 3.000</h3>
-          <p class="desc">Fermentasi ketan hitam dengan rasa manis-asam khas.</p>
+          <p class="desc">Fermentasi ketan hitam, rasa manis-asam khas dan tekstur lembut, cocok sebagai camilan.</p>
           <div class="actions">
             <a class="btn wa" target="_blank" rel="noopener"
                href="https://wa.me/628996023111?text=Halo%2C%20saya%20mau%20pesan%201%20porsi%20Tape%20Ketan%20Hitam%20(Rp%203.000)">
@@ -86,7 +85,7 @@
         <img src="teh.png" alt="Es Teh" />
         <div class="body">
           <h3>Es Teh — Rp 5.000</h3>
-          <p class="desc">Teh segar dingin dengan es batu — cocok diminum saat panas.</p>
+          <p class="desc">Teh segar dingin dengan es batu — cocok diminum saat cuaca panas.</p>
           <div class="actions">
             <a class="btn wa" target="_blank" rel="noopener"
                href="https://wa.me/628996023111?text=Halo%2C%20saya%20mau%20pesan%201%20gelas%20Es%20Teh%20(Rp%205.000)">
@@ -102,7 +101,7 @@
         <img src="jasuke.png" alt="Jasuke" />
         <div class="body">
           <h3>Jasuke — Rp 5.000</h3>
-          <p class="desc">Jagung susu keju hangat — manis dan gurih.</p>
+          <p class="desc">Jagung susu keju hangat — manis dan gurih, favorit anak sekolah.</p>
           <div class="actions">
             <a class="btn wa" target="_blank" rel="noopener"
                href="https://wa.me/628996023111?text=Halo%2C%20saya%20mau%20pesan%201%20porsi%20Jasuke%20(Rp%205.000)">
@@ -120,12 +119,12 @@
     <h2>💥 Promo & Paket Hemat</h2>
 
     <div class="grid">
-      <!-- Promo Tape -->
+      <!-- Tape Promo -->
       <article class="card food-card">
         <img src="tape.png" alt="Promo Tape" />
         <div class="body">
           <h3>Promo Tape Ketan Hitam</h3>
-          <p class="desc">Beli 2 hanya Rp 5.000</p>
+          <p class="desc">Beli 1 = Rp 3.000 • Beli 2 = Rp 5.000</p>
           <div class="actions">
             <a class="btn wa" target="_blank" rel="noopener"
                href="https://wa.me/628996023111?text=Halo%2C%20saya%20mau%20pesan%202%20porsi%20Tape%20Ketan%20Hitam%20Promo%20(Rp%205.000)">
@@ -150,28 +149,28 @@
                href="https://wa.me/628996023111?text=Halo%2C%20saya%20mau%20pesan%20Paket%20Bundling%20Bakso%20%2B%20Es%20Teh%20(Rp%208.000)">
               Pesan Bundling via WA
             </a>
-            <button class="btn add" onclick="addItem('Bundling Bakso + Es Teh',8000)">+ Tambah Kasir</button>
+            <button class="btn add" onclick="addItem('Bundling Bakso + Es Teh',8000)">+ Tambah Kasir (Bundling)</button>
           </div>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- === KASIR === -->
+<!-- === KASIR === -->
 <section id="kasir" class="section hide">
   <div class="container">
-  <div id="kasir-lock" class="lock">
-  <h2>🔒 Akses Kasir</h2>
-  <input type="password" id="kasir-pass" placeholder="Masukkan Password">
-  <br><br>
-  <button onclick="unlockKasir()">Masuk</button>
-</div>
+    
+    <!-- FORM PASSWORD -->
+    <div id="kasir-lock" class="lock">
+      <h2>🔒 Akses Kasir</h2>
+      <input type="password" id="kasir-pass" placeholder="Masukkan Password">
+      <br><br>
+      <button onclick="unlockKasir()">Masuk</button>
+    </div>
 
-    <!-- CONTENT -->
+    <!-- KONTEN KASIR -->
     <div id="kasir-content" class="hide">
       <h2>🛒 Mesin Kasir</h2>
-
-      <!-- Produk -->
       <div class="produk">
         <button onclick="addItem('Bakso', 5000)">+ Bakso Rp 5.000</button>
         <button onclick="addItem('Tape Ketan Hitam', 3000)">+ Tape Rp 3.000</button>
@@ -181,11 +180,9 @@
         <button onclick="addItem('Jasuke', 5000)">+ Jasuke Rp 5.000</button>
       </div>
 
-      <!-- Keranjang -->
       <div id="cart"></div>
-      <p><b>Total: Rp <span id="total">0</span></b></p>
+      <p>Total: Rp <span id="total">0</span></p>
 
-      <!-- Pembayaran -->
       <label>Metode Pembayaran:
         <select id="payment">
           <option value="tunai">Tunai</option>
@@ -193,57 +190,76 @@
         </select>
       </label>
 
-      <!-- QRIS -->
       <div id="qris-box" class="hide">
         <p>Scan QRIS untuk bayar:</p>
         <img src="img/qris.png" alt="QRIS" style="max-width:200px;">
       </div>
 
-      <!-- Checkout -->
       <button onclick="checkout()">Checkout</button>
+    </div>
+
+  </div>
+</section>
+<section id="kasir" class="section hide">
+  <!-- Kasir lock & konten -->
+</section>
+
+<section id="penjualan" class="section hide">
+  <!-- Data Penjualan lock & konten -->
+</section>
+
+<!-- === Data Penjualan === -->
+<section id="penjualan" class="section hide">
+  <div class="container">
+    <h2>📊 Data Penjualan (Login Required)</h2>
+
+    <div id="sales-lock" class="card lock">
+      <p class="subtle">Masukkan password untuk melihat data penjualan.</p>
+      <input id="sales-pass" class="input" type="password" placeholder="Masukkan password" />
+      <div style="margin-top:8px; display:flex; gap:8px;">
+        <button class="btn btn-primary" id="sales-unlock-btn">Masuk</button>
+        <button class="btn" onclick="document.querySelectorAll('section').forEach(s=>s.classList.add('hide')); document.getElementById('home').classList.remove('hide')">Kembali</button>
+      </div>
+      <p id="sales-msg" class="subtle" style="color:#c0392b; display:none;"></p>
+    </div>
+
+    <div id="sales-content" class="card hide">
+      <h3>Rekap Produk</h3>
+      <div id="rekap" class="list"></div>
+
+      <h3 style="margin-top:12px;">Transaksi Terbaru</h3>
+      <div id="salesList" class="list"></div>
+
+      <div style="display:flex; gap:8px; align-items:center; margin-top:12px;">
+        <strong>Total Pendapatan: Rp <span id="salesTotal">0</span></strong>
+        <div style="flex:1"></div>
+        <button class="btn" id="clear-sales-btn">Hapus Semua Data</button>
+      </div>
     </div>
   </div>
 </section>
 
-  <!-- === DATA PENJUALAN === -->
-  <section id="penjualan" class="section hide">
-    <div class="container">
-      <h2>📊 Data Penjualan (Login Required)</h2>
 
-      <div id="sales-lock" class="card lock">
-        <p class="subtle">Masukkan password untuk melihat data penjualan.</p>
-        <input id="sales-pass" class="input" type="password" placeholder="Masukkan password" />
-        <div style="margin-top:8px; display:flex; gap:8px;">
-          <button class="btn btn-primary" id="sales-unlock-btn">Masuk</button>
-          <button class="btn" onclick="document.querySelectorAll('section').forEach(s=>s.classList.add('hide')); document.getElementById('home').classList.remove('hide')">Kembali</button>
-        </div>
-        <p id="sales-msg" class="subtle" style="color:#c0392b; display:none;"></p>
-      </div>
+  <!-- konten website lo -->
 
-      <div id="sales-content" class="card hide">
-        <h3>Rekap Produk</h3>
-        <div id="rekap" class="list"></div>
-
-        <h3 style="margin-top:12px;">Transaksi Terbaru</h3>
-        <div id="salesList" class="list"></div>
-
-        <div style="display:flex; gap:8px; align-items:center; margin-top:12px;">
-          <strong>Total Pendapatan: Rp <span id="salesTotal">0</span></strong>
-          <div style="flex:1"></div>
-          <button class="btn" id="clear-sales-btn">Hapus Semua Data</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer class="footer">
     <p>© 2025 NineFoosionExpo 🎒 | Market Day SMP Islam Plus Baitul Maal</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js"></script> <!-- JS taro sebelum penutup body -->
 </body>
 </html>
+
+<link rel="stylesheet" href="style.css">
+
+
+
+
+
+
+
+
+
 
 
 
