@@ -6,7 +6,7 @@ let jumlahTerjual = {};
 function showPage(page) {
   if (page === 'kasir' || page === 'penjualan') {
     let pass = prompt("Masukkan password:");
-    if (pass !== "KELOMPOK19A2") {
+    if (pass !== "KELOMPOK29A1") {
       alert("Password salah!");
       return;
     }
@@ -95,4 +95,5 @@ function hapusRiwayat() {
     renderPenjualan();
   }
 }
+
 
