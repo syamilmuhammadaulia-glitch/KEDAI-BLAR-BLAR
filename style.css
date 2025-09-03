@@ -1,105 +1,52 @@
-:root{
-  --primary: #6EC1E4;   /* biru pastel */
-  --accent:  #FFB6B9;   /* pink lembut */
-  --bg:      #FFF8F0;   /* putih gading */
-  --text:    #333333;   /* abu gelap */
-  --card:    #ffffff;
-  --muted:   #6b6b6b;
-  --radius: 14px;
-  --shadow: 0 8px 24px rgba(0,0,0,0.08);
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
-
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;height:100%;}
-body{
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Arial;
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  line-height:1.45;
+.nav {
+  background: #333;
+  color: #fff;
+  padding: 10px;
 }
-.food-card img {
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+.section {
+  padding: 20px;
+}
+.grid {
+  display: flex;
+  gap: 15px;
+}
+.card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 150px;
+  text-align: center;
+}
+.card img {
   width: 100%;
-  height: 320px;   /* ubah sesuai selera */
-  object-fit: cover;
-  display: block;
 }
-
-
-/* Container */
-.container{max-width:1100px;margin:0 auto;padding:0 16px;}
-
-/* NAV */
-.nav{background:var(--card);box-shadow:var(--shadow);position:sticky;top:0;z-index:50;}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0;}
-.brand{display:flex;align-items:center;gap:10px}
-.badge{background:var(--primary);padding:6px 10px;border-radius:999px;font-weight:700;color:#053241}
-.brand-title{font-weight:800;text-decoration:none;color:var(--text)}
-.nav-links a{margin-left:14px;text-decoration:none;color:var(--text);font-weight:600}
-
-/* HERO */
-.hero{padding:28px 0;background:linear-gradient(180deg, rgba(110,193,228,0.08), rgba(255,182,185,0.06));}
-.hero-inner{display:grid;grid-template-columns:1fr 420px;gap:20px;align-items:center;padding:18px 0;}
-.lead{color:var(--muted);margin-top:6px}
-.cta{display:flex;gap:10px;margin-top:12px}
-.btn{border:0;padding:10px 14px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:var(--shadow);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.btn-primary{background:var(--primary);color:#053241}
-.btn-accent{background:var(--accent);color:#5a3036}
-.btn.wa{background:#25D366;color:white}
-.btn.add{background:var(--primary);color:#053241}
-
-/* Card */
-.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;padding:0}
-.food-card img{width:100%;height:200px;object-fit:cover;display:block}
-.food-card .body{padding:12px}
-.food-card h3{margin:0 0 6px}
-.desc{color:var(--muted);margin:6px 0}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.promo-text{margin-top:8px;color:var(--muted)}
-
-/* Grid for menu */
-.grid{display:grid;grid-template-columns:repeat(1,1fr);gap:16px;margin-top:12px}
-@media(min-width:680px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
-
-/* Sections spacing */
-.section{padding:28px 0}
-
-/* Order form */
-.order-card{padding:12px}
-.form-row{margin-bottom:10px;display:flex;flex-direction:column}
-input[type=text],input[type=number],select,textarea,input[type=password]{
-  padding:10px;border-radius:10px;border:1px solid #efe7df;font:inherit;
+.hide {
+  display: none;
 }
-.row-between{display:flex;justify-content:space-between;align-items:center}
-
-/* Cashier */
-.lock{padding:12px;border:2px dashed rgba(255,182,185,0.6);border-radius:12px}
-.cashier-grid{display:grid;grid-template-columns:1fr;gap:12px;padding:12px}
-@media(min-width:920px){.cashier-grid{grid-template-columns:1fr 360px}}
-.list{display:grid;gap:8px;margin-top:8px}
-.list.small .item{padding:8px}
-.item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:#fff;border:1px solid #f0ebe4}
-.qty{display:flex;gap:6px;align-items:center}
-.qty button{width:28px;height:28px;border-radius:50%;border:0;background:var(--accent);color:#5a3036;font-weight:800;cursor:pointer}
-
-/* QRIS image */
-.qris-img{width:100%;max-width:320px;border-radius:12px;border:1px solid #eee}
-
-/* Footer */
-.footer{text-align:center;padding:28px 0;color:var(--muted)}
-
-/* Utilities */
-.hide{display:none !important}
-.subtle{color:var(--muted);font-size:14px}
-.small{font-size:14px}
-.btn.small {
-  padding: 6px 10px;
-  font-size: 14px;
-  border-radius: 6px;
-  background: #ff6b6b;
-  color: white;
+#cart .item, #salesList .item {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
 }
-
+button {
+  margin-top: 5px;
+  padding: 5px 10px;
+}
+.qris-img {
+  width: 150px;
+}
 
