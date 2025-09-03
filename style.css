@@ -158,4 +158,18 @@ button {
 button:hover {
   background: #ff9ea2;
 }
+.wa-btn {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 8px 12px;
+  background: #25D366;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.wa-btn:hover {
+  background: #1ebe5c;
+}
+
 
