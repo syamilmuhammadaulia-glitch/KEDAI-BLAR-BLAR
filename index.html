@@ -151,17 +151,13 @@
 </section>
 
 <!-- === DATA PENJUALAN === -->
-<section id="penjualan" class="section hide">
+<section id="sales-data" class="section hide">
   <div class="container">
     <h2>📊 Data Penjualan</h2>
-    <div id="penjualan-lock" class="lock">
-      <p>Data Penjualan dilindungi password.</p>
-      <input type="password" id="penjualan-pass" placeholder="Masukkan password">
-      <button class="btn btn-primary" onclick="unlockPenjualan()">Masuk</button>
-    </div>
-
-    <div id="penjualan-content" class="hide">
-      <div id="rekap"></div>
+    <div id="salesList" class="list small"></div>
+    <div class="row-between" style="margin-top:12px;">
+      <strong>Total: Rp <span id="salesTotal">0</span></strong>
+      <button class="btn accent" onclick="clearAllSales()">Hapus Semua Data</button>
     </div>
   </div>
 </section>
@@ -177,6 +173,7 @@
 
 </body>
 </html>
+
 
 
 
