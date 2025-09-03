@@ -156,57 +156,53 @@
     </div>
   </section>
 
-  <!-- KASIR (TERSEMBUNYI DI UTAMA) -->
-  <section id="kasir" class="section hide">
-    <div class="container">
-      <h2>🧾 Mesin Kasir (Login Required)</h2>
-
-      <div id="kasir-lock" class="lock card">
-        <p class="subtle">Masukkan password untuk mengakses Mesin Kasir.</p>
-        <input id="kasir-pass" class="input" type="password" placeholder="Masukkan password" />
-        <div style="margin-top:8px; display:flex; gap:8px;">
-          <button class="btn btn-primary" id="kasir-unlock-btn">Masuk</button>
-          <button class="btn" onclick="document.querySelectorAll('section').forEach(s=>s.classList.add('hide')); document.getElementById('home').classList.remove('hide')">Kembali</button>
-        </div>
-        <p id="kasir-msg" class="subtle" style="color:#c0392b; display:none;"></p>
-      </div>
-
-      <div id="kasir-content" class="card hide">
-        <h3>Pilih Produk</h3>
-        <div class="list">
-          <button class="btn add" onclick="addItem('Bakso',5000)">+ Bakso (Rp 5.000)</button>
-          <button class="btn add" onclick="addItem('Tape Ketan Hitam',3000)">+ Tape (Rp 3.000)</button>
-          <button class="btn add" onclick="addItem('Es Teh',5000)">+ Es Teh (Rp 5.000)</button>
-          <button class="btn add" onclick="addItem('Jasuke',5000)">+ Jasuke (Rp 5.000)</button>
-          <button class="btn add" onclick="addItem('Bundling Bakso + Es Teh',8000)">+ Bundling (Rp 8.000)</button>
-        </div>
-
-        <h3 style="margin-top:12px;">Keranjang</h3>
-        <div id="cart" class="list"></div>
-        <div class="summary card" style="margin-top:8px;">
-          <div style="display:flex; justify-content:space-between;">
-            <strong>Total</strong><strong id="total">Rp 0</strong>
-          </div>
-
-          <label style="margin-top:8px;">Metode Pembayaran</label>
-          <select id="payment" class="input">
-            <option value="tunai">Tunai</option>
-            <option value="qris">QRIS</option>
-          </select>
-
-          <div id="qris-box" class="hide" style="margin-top:10px;">
-            <p class="subtle">Scan QRIS untuk pembayaran:</p>
-            <img src="qris.png" alt="QRIS" class="qris-img" />
-          </div>
-
-          <div style="display:flex; gap:8px; margin-top:12px;">
-            <button class="btn btn-accent" id="checkout-btn">Selesaikan Transaksi</button>
-            <button class="btn" onclick="clearCart()">Bersihkan Keranjang</button>
-          </div>
-        </div>
-      </div>
+<!-- === Kasir === -->
+<section id="kasir" class="hide">
+  <div id="kasir-lock">
+    <h2>Masukkan Password Kasir</h2>
+    <input type="password" id="kasir-pass">
+    <button onclick="unlockKasir()">Masuk</button>
+  </div>
+  <div id="kasir-content" class="hide">
+    <h2>Mesin Kasir</h2>
+    <div class="produk">
+      <button onclick="addItem('Bakso', 5000)">+ Bakso Rp 5.000</button>
+      <button onclick="addItem('Tape Ketan Hitam', 3000)">+ Tape Rp 3.000</button>
+      <button onclick="addItem('Bundling Tape (2)', 5000)">+ Bundling Tape 2 Rp 5.000</button>
+      <button onclick="addItem('Es Teh', 5000)">+ Es Teh Rp 5.000</button>
+      <button onclick="addItem('Bundling Bakso + Es Teh', 8000)">+ Paket Bakso+EsTeh Rp 8.000</button>
+      <button onclick="addItem('Jasuke', 5000)">+ Jasuke Rp 5.000</button>
     </div>
-  </section>
+    <div id="cart"></div>
+    <p>Total: Rp <span id="total">0</span></p>
+    <label>Metode Pembayaran:
+      <select id="payment">
+        <option value="tunai">Tunai</option>
+        <option value="qris">QRIS</option>
+      </select>
+    </label>
+    <div id="qris-box" class="hide">
+      <img src="img/qris.png" alt="QRIS" style="max-width:200px;">
+    </div>
+    <button onclick="checkout()">Checkout</button>
+  </div>
+</section>
+
+<!-- === Data Penjualan === -->
+<section id="penjualan" class="hide">
+  <div id="penjualan-lock">
+    <h2>Masukkan Password Data Penjualan</h2>
+    <input type="password" id="penjualan-pass">
+    <button onclick="unlockPenjualan()">Masuk</button>
+  </div>
+  <div id="penjualan-content" class="hide">
+    <h2>Data Penjualan</h2>
+    <div id="salesList"></div>
+    <p><b>Total Pendapatan: Rp <span id="salesTotal">0</span></b></p>
+    <button onclick="clearAllSales()">Hapus Semua Data</button>
+  </div>
+</section>
+
 
   <!-- DATA PENJUALAN (TERSEMBUNYI DI UTAMA) -->
   <section id="penjualan" class="section hide">
@@ -249,5 +245,6 @@
 
 </body>
 </html>
+
 
 
