@@ -250,6 +250,12 @@ body {
 .lock button:hover {
   background: #FFB6B9;
 }
+/* Buat sembunyiin section / elemen */
+.hide {
+  display: none !important;
+}
+
+
 
 
 
