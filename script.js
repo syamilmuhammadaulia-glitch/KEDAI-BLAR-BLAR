@@ -1,4 +1,4 @@
-// =====================
+// ===================
 // DATA & KERANJANG
 // =====================
 let cart = [];
@@ -106,3 +106,4 @@ document.getElementById('openDataBtn').addEventListener('click', () => {
 function closePanel(id) {
   document.getElementById(id).classList.add('hidden');
 }
+
