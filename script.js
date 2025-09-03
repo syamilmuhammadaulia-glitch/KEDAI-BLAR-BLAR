@@ -82,6 +82,74 @@ function checkout() {
   cart = [];
   renderCart();
 }
+// === PASSWORD KASIR ===
+function unlockKasir() {
+  const pass = document.getElementById("kasir-pass").value;
+  if (pass === "KELOMPOK29A1") { // ubah sesuai password lo
+    document.getElementById("kasir-lock").classList.add("hide");
+    document.getElementById("kasir-content").classList.remove("hide");
+  } else {
+    alert("❌ Password salah!");
+  }
+}
+
+// === KERANJANG & PRODUK ===
+let cart = [];
+let total = 0;
+
+function addItem(name, price) {
+  cart.push({ name, price });
+  total += price;
+  renderCart();
+}
+
+function renderCart() {
+  const cartDiv = document.getElementById("cart");
+  cartDiv.innerHTML = "";
+  cart.forEach((item, i) => {
+    const div = document.createElement("div");
+    div.textContent = `${item.name} - Rp ${item.price}`;
+    const btn = document.createElement("button");
+    btn.textContent = "❌";
+    btn.onclick = () => removeItem(i);
+    div.appendChild(btn);
+    cartDiv.appendChild(div);
+  });
+  document.getElementById("total").textContent = total;
+}
+
+function removeItem(i) {
+  total -= cart[i].price;
+  cart.splice(i, 1);
+  renderCart();
+}
+
+// === CHECKOUT ===
+function checkout() {
+  if (cart.length === 0) {
+    alert("Keranjang kosong!");
+    return;
+  }
+
+  const payment = document.getElementById("payment").value;
+  let metode = payment === "qris" ? "QRIS" : "Tunai";
+
+  alert(`✅ Transaksi berhasil!\nTotal: Rp ${total}\nMetode: ${metode}`);
+
+  // Reset
+  cart = [];
+  total = 0;
+  renderCart();
+}
+
+// === QRIS TOGGLE ===
+document.getElementById("payment").addEventListener("change", function () {
+  if (this.value === "qris") {
+    document.getElementById("qris-box").classList.remove("hide");
+  } else {
+    document.getElementById("qris-box").classList.add("hide");
+  }
+});
 
 // ================== DATA PENJUALAN ==================
 function unlockPenjualan() {
@@ -135,3 +203,4 @@ document.getElementById("payment").addEventListener("change", function () {
   const qrisBox = document.getElementById("qris-box");
   this.value === "qris" ? qrisBox.classList.remove("hide") : qrisBox.classList.add("hide");
 });
+
