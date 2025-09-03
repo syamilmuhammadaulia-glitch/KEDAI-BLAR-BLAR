@@ -70,14 +70,44 @@
     </div>
   </section>
 
-  <!-- PROMO -->
-  <section id="promo" class="section container">
-    <h2>🔥 Promo & Paket Hemat</h2>
-    <ul>
-      <li>Tape Ketan Hitam: Beli 1 Rp 3.000, Beli 2 Rp 5.000</li>
-      <li>Paket Bundling Bakso + Es Teh: Normal Rp 10.000 → Promo Rp 8.000</li>
-    </ul>
-  </section>
+<section id="promo" class="section">
+  <div class="container">
+    <h2>🎉 Promo & Paket Hemat</h2>
+    <div class="grid">
+      
+      <!-- Promo Tape Ketan Hitam -->
+      <div class="card food-card">
+        <img src="tape.png" alt="Promo Tape Ketan Hitam">
+        <div class="body">
+          <h3>Promo Tape Ketan Hitam</h3>
+          <p class="desc">Beli 1 Rp 3.000, Beli 2 cuma Rp 5.000!</p>
+          <div class="actions">
+            <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+2+porsi+Tape+Ketan+Hitam+Promo+(Rp+5.000)" class="btn wa">Pesan via WA</a>
+            <button class="btn add" onclick="addSale('Promo Tape Ketan Hitam', 5000)">Tambah ke Kasir</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bundling Bakso + Es Teh -->
+      <div class="card food-card">
+        <div class="bundle-imgs" style="display:flex; gap:8px;">
+          <img src="bakso.png"Bakso" style="width:50%">
+          <img src="teh.png" alt="Es Teh" style="width:50%">
+        </div>
+        <div class="body">
+          <h3>Bundling Bakso + Es Teh</h3>
+          <p class="desc">Harga normal Rp 10.000, promo cuma Rp 8.000!</p>
+          <div class="actions">
+            <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+Paket+Bundling+Bakso+%2B+Es+Teh+(Rp+8.000)" class="btn wa">Pesan via WA</a>
+            <button class="btn add" onclick="addSale('Bundling Bakso + Es Teh', 8000)">Tambah ke Kasir</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
 <!-- === KASIR === -->
 <section id="kasir" class="section hide">
@@ -147,6 +177,7 @@
 
 </body>
 </html>
+
 
 
 
