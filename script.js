@@ -1,150 +1,96 @@
-// ==========================
-// Navigasi Halaman
-// ==========================
-function showPage(pageId) {
-  // Sembunyikan semua section
-  document.querySelectorAll("section").forEach(sec => {
-    sec.style.display = "none";
-  });
-
-  // Tampilkan section yang dipilih
-  let target = document.getElementById(pageId);
-  if (target) target.style.display = "block";
-}
-
-// ==========================
-// Password Protection
-// ==========================
-function checkPassword(pageId) {
-  const pass = prompt("Masukkan password:");
-  if (pass === "KELOMPOK29A1") {
-    showPage(pageId);
-  } else {
-    alert("Password salah!");
-  }
-}
-
-// ==========================
-// Data Kasir & Penjualan
-// ==========================
+let currentPage = 'menu';
 let cart = [];
-let salesData = {};
+let salesHistory = [];
+let salesCount = {};
 
-// Tambah produk ke keranjang
-function addToCart(product, price) {
-  let existing = cart.find(item => item.product === product);
-  if (existing) {
-    existing.qty++;
-    existing.subtotal += price;
-  } else {
-    cart.push({ product, price, qty: 1, subtotal: price });
+function showPage(page) {
+  if (page === 'kasir' || page === 'penjualan') {
+    let pass = prompt("Masukkan password:");
+    if (pass !== "KELOMPOK29A2") {
+      alert("Password salah!");
+      return;
+    }
   }
-  renderCart();
+  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+  document.getElementById(page).style.display = 'block';
+  currentPage = page;
+
+  if (page === 'kasir') renderKasir();
+  if (page === 'penjualan') renderPenjualan();
 }
 
-// Render keranjang ke tabel
-function renderCart() {
-  let cartList = document.getElementById("cart-list");
+function addToCart(name, price) {
+  cart.push({ name, price });
+  alert(`${name} ditambahkan ke keranjang.`);
+}
+
+function renderKasir() {
+  let html = '<h3>Keranjang Belanja</h3>';
   let total = 0;
-  cartList.innerHTML = "";
-
-  cart.forEach(item => {
-    total += item.subtotal;
-    cartList.innerHTML += `
-      <tr>
-        <td>${item.product}</td>
-        <td>Rp ${item.price}</td>
-        <td>${item.qty}</td>
-        <td>Rp ${item.subtotal}</td>
-      </tr>`;
+  cart.forEach((item, i) => {
+    html += `<p>${item.name} - Rp ${item.price.toLocaleString()} <button onclick="removeFromCart(${i})">❌</button></p>`;
+    total += item.price;
   });
-
-  document.getElementById("total").textContent = "Rp " + total;
+  html += `<h4>Total: Rp ${total.toLocaleString()}</h4>`;
+  html += `<button onclick="checkout('Tunai')">Bayar Tunai</button>`;
+  html += `<button onclick="checkout('QRIS')">Bayar QRIS</button>`;
+  document.getElementById('kasir-container').innerHTML = html;
 }
 
-// Selesaikan transaksi
-function checkout() {
+function removeFromCart(i) {
+  cart.splice(i, 1);
+  renderKasir();
+}
+
+function checkout(method) {
   if (cart.length === 0) {
     alert("Keranjang kosong!");
     return;
   }
-
-  // Simpan ke data penjualan
   cart.forEach(item => {
-    if (!salesData[item.product]) {
-      salesData[item.product] = { qty: 0, total: 0 };
-    }
-    salesData[item.product].qty += item.qty;
-    salesData[item.product].total += item.subtotal;
+    salesHistory.push({ ...item, method, time: new Date().toLocaleString() });
+    salesCount[item.name] = (salesCount[item.name] || 0) + 1;
   });
-
-  // Tambah riwayat transaksi
-  let history = document.getElementById("sales-history");
-  let li = document.createElement("li");
-  li.textContent = "Transaksi: " + cart.map(i => `${i.qty}x ${i.product}`).join(", ") + 
-                   " | Total Rp " + cart.reduce((sum,i)=>sum+i.subtotal,0);
-  history.appendChild(li);
-
-  // Reset keranjang
   cart = [];
-  renderCart();
-  renderSalesData();
-  alert("Transaksi berhasil!");
+  alert(`Transaksi berhasil dengan ${method}`);
+  renderKasir();
 }
 
-// Render data penjualan
-function renderSalesData() {
-  let summary = document.getElementById("sales-summary");
-  summary.innerHTML = "";
-  let totalUang = 0;
+function renderPenjualan() {
+  let html = '<h3>Riwayat Transaksi</h3>';
+  let totalAll = 0;
+  salesHistory.forEach(s => {
+    html += `<p>${s.time} - ${s.name} Rp ${s.price.toLocaleString()} (${s.method})</p>`;
+    totalAll += s.price;
+  });
+  html += `<h3>Total Pendapatan: Rp ${totalAll.toLocaleString()}</h3>`;
 
-  for (let produk in salesData) {
-    summary.innerHTML += `
-      <tr>
-        <td>${produk}</td>
-        <td>${salesData[produk].qty}</td>
-        <td>Rp ${salesData[produk].total}</td>
-      </tr>`;
-    totalUang += salesData[produk].total;
+  html += '<h3>Jumlah Produk Terjual</h3>';
+  for (let item in salesCount) {
+    html += `<p>${item}: ${salesCount[item]}x</p>`;
   }
 
-  if (Object.keys(salesData).length > 0) {
-    summary.innerHTML += `
-      <tr style="font-weight:bold;">
-        <td colspan="2">TOTAL</td>
-        <td>Rp ${totalUang}</td>
-      </tr>`;
+  html += `<button onclick="clearHistory()">Hapus History</button>`;
+  document.getElementById('penjualan-container').innerHTML = html;
+}
+
+function clearHistory() {
+  if (confirm("Yakin hapus semua data penjualan?")) {
+    salesHistory = [];
+    salesCount = {};
+    renderPenjualan();
   }
 }
 
-// Hapus semua riwayat & data penjualan
-function clearSales() {
-  salesData = {};
-  document.getElementById("sales-history").innerHTML = "";
-  renderSalesData();
-}
-
-// ==========================
-// Default Page saat load
-// ==========================
-window.onload = () => {
-  showPage("menu"); // langsung buka halaman Menu
-  renderCart();
-  renderSalesData();
-};
-// Pemesanan langsung dari form
 function orderNow() {
-  let select = document.getElementById("order-product").value.split("|");
-  let product = select[0];
-  let price = parseInt(select[1]);
-  let qty = parseInt(document.getElementById("order-qty").value);
+  const productValue = document.getElementById("order-product").value.split("|");
+  const name = productValue[0];
+  const price = parseInt(productValue[1]);
+  const qty = parseInt(document.getElementById("order-qty").value);
+  const total = price * qty;
 
-  for (let i = 0; i < qty; i++) {
-    addToCart(product, price);
-  }
-
-  alert(qty + "x " + product + " ditambahkan ke keranjang!");
-  showPage("kasir"); // otomatis buka halaman kasir
+  document.getElementById("order-result").innerHTML = `
+    <p>Anda memesan ${qty} ${name} - Total Rp ${total.toLocaleString()}</p>
+  `;
 }
-
 
