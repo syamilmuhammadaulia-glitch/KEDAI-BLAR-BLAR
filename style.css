@@ -1,113 +1,103 @@
-body {
-  font-family: Arial, sans-serif;
+:root {
+  --primary: #6EC1E4;
+  --accent: #FFB6B9;
+  --background: #FFF8F0;
+  --text: #333333;
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background: #FFF8F0; /* Putih gading */
-  color: #333333; /* Teks abu gelap */
+  font-family: 'Comic Sans MS', sans-serif;
 }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #6EC1E4; /* Biru pastel */
-  padding: 10px 20px;
+body {
+  background-color: var(--background);
+  color: var(--text);
+}
+
+section {
+  padding: 20px;
+  text-align: center;
+}
+
+.landing {
+  background-color: var(--primary);
   color: white;
-  border-bottom: 3px solid #FFB6B9; /* Pink lembut aksen */
+  padding: 50px 20px;
+  border-radius: 10px;
+  margin: 20px;
 }
-.navbar .logo { font-weight: bold; font-size: 1.5em; }
-.nav-links li { display: inline; margin: 0 10px; }
-.nav-links a { color: white; text-decoration: none; }
 
-/* Pages */
-.page { display: none; padding: 20px; }
-.page.active { display: block; }
-
-/* Hero */
-.hero { text-align: center; }
-.hero-img { width: 100%; max-width: 1080px; height: auto; object-fit: contain; border-radius: 15px; }
-
-/* Produk */
-.produk-grid {
+.menu .products, .promo .products, .kasir .products {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
-}
-.produk-card {
-  background: #FFB6B9; /* Pink lembut */
-  border-radius: 15px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-  padding: 10px;
-  flex: 1 1 200px;
-  text-align: center;
-  transition: transform 0.2s;
-}
-.produk-card:hover { transform: scale(1.05); }
-.produk-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: contain;
-  border-radius: 10px;
-}
-
-/* Kasir checkbox grid */
-.checkbox-grid { display: flex; flex-direction: column; }
-
-/* QRIS */
-.qris-img { width: 200px; height: auto; display: block; margin-top: 10px; }
-
-/* Footer */
-footer {
-  background: #6EC1E4; /* Biru pastel */
-  color: white;
-  text-align: center;
-  padding: 10px;
-  margin-top: 20px;
-  border-top: 3px solid #FFB6B9; /* aksen pink */
-}
-
-button { 
-  cursor: pointer;
-  background-color: #FFB6B9; /* Pink lembut */
-  color: #333333;
-  border: none;
-  border-radius: 10px;
-  padding: 8px 15px;
-  font-weight: bold;
-  transition: background-color 0.2s;
-}
-button:hover { background-color: #FF99A0; }
-
-/* Kasir Produk Grid */
-.produk-kasir-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 kolom */
   gap: 20px;
-  justify-items: center;
+  margin-top: 20px;
 }
 
-.produk-kasir-card {
-  background: #FFF8F0; /* Putih gading */
+.product {
+  background-color: white;
+  border: 2px solid var(--accent);
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  padding: 10px;
+  padding: 15px;
+  width: 200px;
   text-align: center;
-  transition: transform 0.2s;
 }
 
-.produk-kasir-card:hover { transform: scale(1.03); }
-
-.produk-kasir-card img {
+.product img {
   width: 100%;
-  height: 200px;
-  object-fit: contain;
   border-radius: 10px;
 }
 
-.produk-kasir-card input[type="number"] {
-  width: 60px;
-  margin-left: 5px;
+.btn-wa {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: var(--accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.kasir, .data-penjualan {
+  margin-top: 40px;
+}
+
+.hidden {
+  display: none;
+}
+
+.cart ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.cart button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid var(--accent);
+  padding: 10px;
+}
+
+th {
+  background-color: var(--primary);
+  color: white;
 }
 
