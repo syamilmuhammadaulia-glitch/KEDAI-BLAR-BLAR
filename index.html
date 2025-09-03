@@ -187,6 +187,19 @@
     <button onclick="checkout()">Checkout</button>
   </div>
 </section>
+.lock {
+  background: #FFF8F0;
+  border: 2px solid #6EC1E4;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin: 20px 0;
+}
+.lock input {
+  padding: 10px;
+  border: 1px solid #6EC1E4;
+  border-radius: 8px;
+}
 
 <!-- === Data Penjualan === -->
 <section id="penjualan" class="hide">
@@ -202,6 +215,19 @@
     <button onclick="clearAllSales()">Hapus Semua Data</button>
   </div>
 </section>
+.lock {
+  background: #FFF8F0;
+  border: 2px solid #6EC1E4;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin: 20px 0;
+}
+.lock input {
+  padding: 10px;
+  border: 1px solid #6EC1E4;
+  border-radius: 8px;
+}
 
 
   <!-- DATA PENJUALAN (TERSEMBUNYI DI UTAMA) -->
@@ -235,10 +261,17 @@
     </div>
   </section>
 
-  <footer class="footer">
-    © <span id="year"></span> NineFoosionExpo • SMP Islam Plus Baitul Maal
-  </footer>
-  <footer> © MADE BY @alvino_daris</footer>
+ <footer class="footer">
+  <p>© 2025 NineFoosionExpo 🎒 | Market Day SMP Islam Plus Baitul Maal</p>
+</footer>
+.footer {
+  background: var(--primary);
+  color: white;
+  padding: 15px;
+  text-align: center;
+  border-radius: 12px 12px 0 0;
+  margin-top: 30px;
+}
 
   <script src="script.js"></script>
   <link rel="stylesheet" href="style.css">
@@ -258,6 +291,26 @@
   object-fit: cover;
   border-radius: 10px;
 }
+:root {
+  --primary: #6EC1E4;
+  --accent: #FFB6B9;
+  --bg: #FFF8F0;
+  --text: #333;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+.btn {
+  background: var(--primary);
+  color: white;
+  border-radius: 12px;
+  padding: 8px 16px;
+}
+.btn-accent {
+  background: var(--accent);
+}
+
 
 
 
