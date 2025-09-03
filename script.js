@@ -19,11 +19,11 @@ document.getElementById("home").classList.remove("hide");
 // === Kasir ===
 function unlockKasir() {
   const pass = document.getElementById("kasir-pass").value;
-  if (pass === PASSWORD) {
+  if (pass === "KELOMPOK29A1") { // ganti password sesuai kebutuhan
     document.getElementById("kasir-lock").classList.add("hide");
     document.getElementById("kasir-content").classList.remove("hide");
   } else {
-    alert("Password salah!");
+    alert("❌ Password salah!");
   }
 }
 
@@ -116,4 +116,19 @@ document.getElementById("payment").addEventListener("change", function() {
     document.getElementById("qris-box").classList.add("hide");
   }
 });
+function hideAllSections() {
+  document.querySelectorAll('section').forEach(s => s.classList.add('hide'));
+}
+
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const id = this.getAttribute('href').substring(1);
+    if (document.getElementById(id)) {
+      e.preventDefault();
+      hideAllSections();
+      document.getElementById(id).classList.remove('hide');
+    }
+  });
+});
+
 
