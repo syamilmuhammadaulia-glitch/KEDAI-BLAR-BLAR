@@ -1,82 +1,99 @@
 body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #FFF8F0;
+  font-family: Arial, sans-serif;
+  background-color: #FFF8F0;
   color: #333333;
+  margin: 0;
+  padding: 0;
 }
 
-.hero {
-  text-align: center;
-  padding: 2rem;
+header {
   background: #6EC1E4;
   color: white;
+  padding: 15px;
+  text-align: center;
 }
 
-.hero nav a {
+nav a {
   margin: 0 10px;
-  color: #FFF8F0;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
 }
 
-.menu {
-  padding: 2rem;
-  text-align: center;
+nav a:hover {
+  color: #FFB6B9;
 }
 
-.menu-grid {
+.page {
+  padding: 20px;
+}
+
+.card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1rem;
+  gap: 15px;
 }
 
 .card {
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  padding: 1rem;
+  background: #fff;
+  border: 2px solid #FFB6B9;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
 }
 
 .card img {
-  width: 100%;
+  max-width: 100%;
   border-radius: 10px;
 }
 
-.card h3 {
-  margin: 10px 0;
-}
-
-.harga {
-  font-weight: bold;
-  color: #FF4F6D;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 15px;
-  background: #FFB6B9;
-  color: #333;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: #ff9aa2;
-}
-
-footer {
-  text-align: center;
-  padding: 1rem;
+button {
   background: #6EC1E4;
   color: white;
+  border: none;
+  padding: 8px 12px;
+  margin: 5px 0;
+  border-radius: 8px;
+  cursor: pointer;
 }
-.page.hidden {
+
+button:hover {
+  background: #FFB6B9;
+}
+
+.kasir-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Modal QRIS */
+.modal {
   display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
 }
 
+.modal-content {
+  background: white;
+  padding: 20px;
+  margin: 10% auto;
+  width: 300px;
+  border-radius: 10px;
+  text-align: center;
+}
 
+.close {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
 
