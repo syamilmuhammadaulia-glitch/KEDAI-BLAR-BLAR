@@ -7,138 +7,87 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Navbar -->
   <header>
-    <h1>NineFoosionExpo 🎒</h1>
+    <h1>NineFoosionExpo</h1>
     <nav>
-      <a href="#" onclick="showPage('menu')">Menu</a>
-      <a href="#" onclick="showPage('promo')">Promo</a>
-      <a href="#" onclick="checkPassword('kasir')">Kasir</a>
-      <a href="#" onclick="checkPassword('penjualan')">Data Penjualan</a>
+      <button onclick="showPage('menu')">Menu</button>
+      <button onclick="showPage('promo')">Promo</button>
+      <button onclick="showPage('kasir')">Kasir</button>
+      <button onclick="showPage('penjualan')">Data Penjualan</button>
     </nav>
   </header>
 
-
-
   <!-- MENU -->
-  <section id="menu" class="page" style="display:none;">
+  <section id="menu" class="page">
     <h2>Menu Makanan & Minuman</h2>
-    <div class="card-grid">
-      <div class="card">
-        <img src="bakso.png" alt="Bakso">
-        <h3>Bakso</h3>
-        <p>Rp 5.000</p>
-        <p>Bola daging sapi dengan kuah hangat dan pelengkap mie.</p>
-      </div>
-      <div class="card">
-        <img src="tape.png" alt="Tape Ketan Hitam">
-        <h3>Tape Ketan Hitam</h3>
-        <p>Rp 3.000</p>
-        <p>Ketan hitam fermentasi dengan rasa manis asam khas.</p>
-      </div>
-      <div class="card">
-        <img src="teh.png" alt="Es Teh">
-        <h3>Es Teh</h3>
-        <p>Rp 5.000</p>
-        <p>Teh segar dingin dengan es batu, cocok untuk cuaca panas.</p>
-      </div>
-      <div class="card">
-        <img src="jasuke.png" alt="Jasuke">
-        <h3>Jasuke</h3>
-        <p>Rp 5.000</p>
-        <p>Jagung manis rebus dengan susu kental manis dan keju parut.</p>
-      </div>
+
+    <div class="menu-item">
+      <h3>Bakso (Rp 5.000)</h3>
+      <a class="wa-btn" href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Bakso+(Rp+5.000)" target="_blank">Pesan via WhatsApp</a>
+      <button onclick="addToCart('Bakso', 5000)">Tambah ke Keranjang</button>
+    </div>
+
+    <div class="menu-item">
+      <h3>Tape Ketan Hitam (Rp 3.000)</h3>
+      <a class="wa-btn" href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Tape+Ketan+Hitam+(Rp+3.000)" target="_blank">Pesan via WhatsApp</a>
+      <button onclick="addToCart('Tape Ketan Hitam', 3000)">Tambah ke Keranjang</button>
+    </div>
+
+    <div class="menu-item">
+      <h3>Es Teh (Rp 5.000)</h3>
+      <a class="wa-btn" href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+gelas+Es+Teh+(Rp+5.000)" target="_blank">Pesan via WhatsApp</a>
+      <button onclick="addToCart('Es Teh', 5000)">Tambah ke Keranjang</button>
+    </div>
+
+    <div class="menu-item">
+      <h3>Jasuke (Rp 5.000)</h3>
+      <a class="wa-btn" href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Jasuke+(Rp+5.000)" target="_blank">Pesan via WhatsApp</a>
+      <button onclick="addToCart('Jasuke', 5000)">Tambah ke Keranjang</button>
     </div>
   </section>
 
   <!-- PROMO -->
   <section id="promo" class="page" style="display:none;">
     <h2>Promo & Paket Hemat</h2>
-    <div class="card-grid">
-      <div class="card">
-        <img src="tape.png" alt="Promo Tape">
-        <h3>Tape Ketan Hitam Promo</h3>
-        <p>Beli 1 Rp 3.000, Beli 2 Rp 5.000</p>
-      </div>
-      <div class="card">
-        <img src="bakso.png" alt="Bundling Bakso + Es Teh">
-           <img src="teh.png" alt="Bundling Bakso + Es Teh">
-        <h3>Bundling Bakso + Es Teh</h3>
-        <p>Harga Normal Rp 10.000 <br> Promo Rp 8.000</p>
-      </div>
+
+    <div class="menu-item">
+      <h3>Tape Ketan Hitam Promo 2x (Rp 5.000)</h3>
+      <a class="wa-btn" href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+2+porsi+Tape+Ketan+Hitam+Promo+(Rp+5.000)" target="_blank">Pesan via WhatsApp</a>
+      <button onclick="addToCart('Tape Ketan Hitam Promo', 5000)">Tambah ke Keranjang</button>
+    </div>
+
+    <div class="menu-item">
+      <h3>Bundling Bakso + Es Teh (Rp 8.000)</h3>
+      <a class="wa-btn" href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+Paket+Bundling+Bakso+%2B+Es+Teh+(Rp+8.000)" target="_blank">Pesan via WhatsApp</a>
+      <button onclick="addToCart('Bundling Bakso + Es Teh', 8000)">Tambah ke Keranjang</button>
     </div>
   </section>
 
-  <!-- KASIR -->
-<div id="kasir" class="kasir-container" style="display:none;">
-  <h2>🛒 Mesin Kasir</h2>
-  <div class="produk-list">
-    <button onclick="addToCart('Bakso',5000)">+ Bakso Rp 5.000</button>
-    <button onclick="addToCart('Tape Ketan Hitam',3000)">+ Tape Rp 3.000</button>
-    <button onclick="addToCart('Es Teh',5000)">+ Es Teh Rp 5.000</button>
-    <button onclick="addToCart('Jasuke',5000)">+ Jasuke Rp 5.000</button>
-    <button onclick="addToCart('Promo Tape 2',5000)">+ Promo Tape 2 Rp 5.000</button>
-    <button onclick="addToCart('Bundling Bakso + Es Teh',8000)">+ Bundling Rp 8.000</button>
-  </div>
+  <!-- PEMESANAN LANGSUNG -->
+  <section id="order" class="page" style="display:none;">
+    <h2>Pemesanan Online</h2>
+    <label>Pilih Produk:</label>
+    <select id="order-product">
+      <option value="Bakso|5000">Bakso (Rp 5.000)</option>
+      <option value="Tape Ketan Hitam|3000">Tape Ketan Hitam (Rp 3.000)</option>
+      <option value="Tape Ketan Hitam Promo|5000">Tape Ketan Hitam Promo (2 Rp 5.000)</option>
+      <option value="Es Teh|5000">Es Teh (Rp 5.000)</option>
+      <option value="Bundling Bakso + Es Teh|8000">Bundling Bakso + Es Teh (Rp 8.000)</option>
+      <option value="Jasuke|5000">Jasuke (Rp 5.000)</option>
+    </select>
+    <label>Jumlah:</label>
+    <input type="number" id="order-qty" min="1" value="1">
+    <button onclick="orderNow()">Pesan Sekarang</button>
+  </section>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Produk</th>
-        <th>Harga</th>
-        <th>Jumlah</th>
-        <th>Subtotal</th>
-      </tr>
-    </thead>
-    <tbody id="cart-list"></tbody>
-  </table>
+  <!-- KASIR & DATA PENJUALAN -->
+  <section id="kasir" class="page" style="display:none;"></section>
+  <section id="penjualan" class="page" style="display:none;"></section>
 
-  <div class="total-box">Total: <span id="total">Rp 0</span></div>
-
-  <div class="payment-method">
-    <label><input type="radio" name="payment" value="tunai" checked> Tunai</label>
-    <label><input type="radio" name="payment" value="qris"> QRIS</label>
-    <img src="qris.png" alt="QRIS" style="max-width:120px; display:block; margin-top:10px;">
-  </div>
-
-  <button onclick="checkout()">Selesaikan Transaksi</button>
-</div>
-
-
-  <!-- DATA PENJUALAN -->
-<div id="penjualan" class="penjualan-container" style="display:none;">
-  <h2>📊 Data Penjualan</h2>
-  
-  <table>
-    <thead>
-      <tr>
-        <th>Produk</th>
-        <th>Jumlah Terjual</th>
-        <th>Total Uang</th>
-      </tr>
-    </thead>
-    <tbody id="sales-summary"></tbody>
-  </table>
-
-  <h3>Riwayat Transaksi</h3>
-  <ul id="sales-history"></ul>
-
-  <button onclick="clearSales()">Hapus Riwayat</button>
-</div>
-
-
-  <footer>
-    <p>© 2025 NineFoosionExpo | SMP Islam Plus Baitul Maal</p>
-   
-  </footer>
-
+  <!-- Script -->
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
 
