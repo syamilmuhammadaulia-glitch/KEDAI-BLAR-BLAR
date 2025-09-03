@@ -208,20 +208,53 @@
   <!-- Data Penjualan lock & konten -->
 </section>
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Penjualan</title>
+  <style>
+    body { font-family: Arial, sans-serif; background:#f9f9f9; margin:0; padding:20px; }
+    .card { background:#fff; padding:16px; border-radius:8px; margin-bottom:16px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+    .hide { display:none; }
+    .sale-item { display:flex; justify-content:space-between; margin:6px 0; padding:6px; border-bottom:1px solid #ddd; }
+    .sale-item button { background:#e74c3c; color:white; border:none; padding:4px 8px; border-radius:4px; cursor:pointer; }
+    .btn { padding:8px 16px; border:none; border-radius:6px; cursor:pointer; }
+    .btn-primary { background:#3498db; color:white; }
+    .btn-danger { background:#e74c3c; color:white; }
+  </style>
+</head>
+<body>
+
 <!-- === Data Penjualan === -->
-<section id="penjualan" class="section hide">
-  <div class="container">
-    <h2>📊 Data Penjualan</h2>
-    <div id="sales-content" class="card">
-      <h3>Transaksi Terbaru</h3>
-      <div id="salesList" class="list"></div>
-      <div style="margin-top:12px;">
-        <strong>Total Pendapatan: Rp <span id="salesTotal">0</span></strong>
-      </div>
-      <button class="btn btn-danger" onclick="clearSales()" style="margin-top:8px;">Hapus Semua Data</button>
-    </div>
+<section id="penjualan" class="section">
+  <h2>📊 Data Penjualan</h2>
+
+  <!-- Lock -->
+  <div id="penjualan-lock" class="card">
+    <p>Masukkan password untuk melihat data penjualan:</p>
+    <input id="penjualan-pass" type="password" placeholder="Password" />
+    <button class="btn btn-primary" onclick="unlockPenjualan()">Masuk</button>
+  </div>
+
+  <!-- Content -->
+  <div id="penjualan-content" class="card hide">
+    <h3>Transaksi</h3>
+    <div id="salesList"></div>
+
+    <h3 style="margin-top:12px;">Total Pendapatan: Rp <span id="salesTotal">0</span></h3>
+
+    <button class="btn btn-danger" onclick="clearAllSales()">Hapus Semua Data</button>
   </div>
 </section>
+
+<script>
+  // Simpan password untuk masuk
+  const PASSWORD = "1234";
+
+  // Load data penjualan dari localStorage
+  let sales = JSON.parse(localStorag
+
 
   <!-- konten website lo -->
 
@@ -234,6 +267,7 @@
 </html>
 
 <link rel="stylesheet" href="style.css">
+
 
 
 
