@@ -61,6 +61,23 @@ function checkout() {
   cart = [];
   renderCart();
 }
+<script>
+function simpanTransaksi(items, total, payment) {
+  const sales = JSON.parse(localStorage.getItem("salesData")) || [];
+  sales.push({
+    date: new Date().toLocaleString("id-ID"),
+    items: items,            // contoh: [{name:"Bakso"}, {name:"Es Teh"}]
+    total: Number(total) || 0,
+    payment: payment         // "Tunai" | "QRIS"
+  });
+  localStorage.setItem("salesData", JSON.stringify(sales));
+}
+</script>
+// Contoh di tombol Checkout Tunai
+simpanTransaksi(cartItems, grandTotal, "Tunai");
+
+// Contoh di tombol Checkout QRIS (setelah sukses)
+simpanTransaksi(cartItems, grandTotal, "QRIS");
 
 // === Data Penjualan ===
 function unlockPenjualan() {
@@ -112,6 +129,79 @@ simpanTransaksi(cartItems, grandTotal, "Tunai");
 
 // Setelah user klik "Bayar QRIS"
 simpanTransaksi(cartItems, grandTotal, "QRIS");
+<script>
+// Password sederhana (ubah sesuai kebutuhan)
+const PASSWORD = "1234";
+
+// === UNLOCK ===
+function unlockPenjualan() {
+  const pass = document.getElementById("sales-pass").value;
+  if (pass === PASSWORD) {
+    document.getElementById("sales-lock").classList.add("hide");
+    document.getElementById("sales-content").classList.remove("hide");
+    renderSalesData();
+  } else {
+    alert("Password salah!");
+  }
+}
+
+// === RENDER LIST DATA ===
+function renderSalesData() {
+  const salesListEl = document.getElementById("salesList");
+  salesListEl.innerHTML = "";
+
+  // Selalu muat terbaru dari localStorage
+  const sales = JSON.parse(localStorage.getItem("salesData")) || [];
+  let total = 0;
+
+  sales.forEach((sale, index) => {
+    total += Number(sale.total) || 0;
+
+    const div = document.createElement("div");
+    div.className = "sale-item";
+
+    const itemsText = Array.isArray(sale.items)
+      ? sale.items.map(i => (i?.name ?? i)).join(", ")
+      : "-";
+
+    div.innerHTML = `
+      <span>${sale.date ?? "-"} - ${itemsText} - Rp ${formatRupiah(sale.total)} (${sale.payment ?? "-"})</span>
+      <button onclick="removeSale(${index})">Hapus</button>
+    `;
+    salesListEl.appendChild(div);
+  });
+
+  document.getElementById("salesTotal").innerText = formatRupiah(total);
+}
+
+// === HAPUS SATU DATA ===
+function removeSale(index) {
+  const sales = JSON.parse(localStorage.getItem("salesData")) || [];
+  sales.splice(index, 1);
+  localStorage.setItem("salesData", JSON.stringify(sales));
+  renderSalesData();
+}
+
+// === HAPUS SEMUA DATA ===
+function clearAllSales() {
+  if (confirm("Yakin mau hapus semua data penjualan?")) {
+    localStorage.setItem("salesData", JSON.stringify([]));
+    renderSalesData();
+  }
+}
+
+// === UTIL: FORMAT RUPIAH ===
+function formatRupiah(nominal) {
+  const n = Number(nominal) || 0;
+  return n.toLocaleString("id-ID");
+}
+</script>
+{
+  date: "03/09/2025 16.40.00",
+  items: [{ name: "Bakso" }, { name: "Es Teh" }],
+  total: 15000,
+  payment: "QRIS"
+}
 
 // === QRIS toggle ===
 document.getElementById("payment").addEventListener("change", function() {
@@ -135,6 +225,7 @@ document.querySelectorAll('nav a').forEach(link => {
     }
   });
 });
+
 
 
 
