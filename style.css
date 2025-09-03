@@ -1,6 +1,6 @@
 :root {
   --primary: #6EC1E4;
-  --accent: #FFB6B9;
+  --accent: #FFB7B9;
   --background: #FFF8F0;
   --text: #333333;
 }
@@ -100,4 +100,5 @@ th {
   background-color: var(--primary);
   color: white;
 }
+
 
