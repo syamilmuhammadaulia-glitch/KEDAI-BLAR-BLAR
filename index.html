@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navbar -->
   <header>
     <nav>
       <ul>
@@ -19,87 +18,81 @@
     </nav>
   </header>
 
-  <!-- Halaman Menu -->
   <div id="menu" class="page">
     <h2>Daftar Menu</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="bakso.png" alt="Bakso">
+        <p><b>Bakso - Rp5.000</b></p>
+        <p>Mie kuah hangat dengan bakso sapi kenyal dan sayuran segar.</p>
+        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Bakso+(Rp+5.000)" target="_blank" class="whatsapp-button">
+          Pesan via WhatsApp
+        </a>
+      </div>
 
-    <div class="menu-item">
-      <img src="bakso.png" alt="Bakso">
-      <p><b>Bakso - Rp5.000</b></p>
-      <p>Mie kuah hangat dengan bakso sapi kenyal dan sayuran segar.</p>
-      <button onclick="tambahProduk('Bakso', 5000)">Tambah ke Kasir</button>
-      <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Bakso+(Rp+5.000)" target="_blank">
-        <button>Pesan via WhatsApp</button>
-      </a>
-    </div>
+      <div class="menu-item">
+        <img src="teh.png" alt="Es Teh">
+        <p><b>Es Teh - Rp5.000</b></p>
+        <p>Teh manis segar dengan es batu, pas diminum saat panas.</p>
+        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+gelas+Es+Teh+(Rp+5.000)" target="_blank" class="whatsapp-button">
+          Pesan via WhatsApp
+        </a>
+      </div>
 
-    <div class="menu-item">
-      <img src="teh.png" alt="Es Teh">
-      <p><b>Es Teh - Rp5.000</b></p>
-      <p>Teh manis segar dengan es batu, pas diminum saat panas.</p>
-      <button onclick="tambahProduk('Es Teh', 5000)">Tambah ke Kasir</button>
-      <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+gelas+Es+Teh+(Rp+5.000)" target="_blank">
-        <button>Pesan via WhatsApp</button>
-      </a>
-    </div>
+      <div class="menu-item">
+        <img src="tape.png" alt="Tape Ketan Hitam">
+        <p><b>Tape Ketan Hitam - Rp3.000</b></p>
+        <p>Camilan manis-asam dari ketan hitam hasil fermentasi.</p>
+        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Tape+Ketan+Hitam+(Rp+3.000)" target="_blank" class="whatsapp-button">
+          Pesan via WhatsApp
+        </a>
+        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+2+porsi+Tape+Ketan+Hitam+Promo+(Rp+5.000)" target="_blank" class="whatsapp-button whatsapp-promo-button">
+          Pesan Promo via WhatsApp
+        </a>
+      </div>
 
-    <div class="menu-item">
-      <img src="tape.png" alt="Tape Ketan Hitam">
-      <p><b>Tape Ketan Hitam - Rp3.000</b></p>
-      <p>Camilan manis-asam dari ketan hitam hasil fermentasi.</p>
-      <button onclick="tambahProduk('Tape Ketan Hitam', 3000)">Tambah ke Kasir</button>
-      <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Tape+Ketan+Hitam+(Rp+3.000)" target="_blank">
-        <button>Pesan via WhatsApp</button>
-      </a>
-      <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+2+porsi+Tape+Ketan+Hitam+Promo+(Rp+5.000)" target="_blank">
-        <button>Pesan Promo via WhatsApp</button>
-      </a>
-    </div>
-
-    <div class="menu-item">
-      <img src="jasuke.png" alt="Jasuke">
-      <p><b>Jasuke - Rp5.000</b></p>
-      <p>Jagung manis hangat dengan susu kental manis dan taburan keju.</p>
-      <button onclick="tambahProduk('Jasuke', 5000)">Tambah ke Kasir</button>
-      <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Jasuke+(Rp+5.000)" target="_blank">
-        <button>Pesan via WhatsApp</button>
-      </a>
+      <div class="menu-item">
+        <img src="jasuke.png" alt="Jasuke">
+        <p><b>Jasuke - Rp5.000</b></p>
+        <p>Jagung manis hangat dengan susu kental manis dan taburan keju.</p>
+        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Jasuke+(Rp+5.000)" target="_blank" class="whatsapp-button">
+          Pesan via WhatsApp
+        </a>
+      </div>
     </div>
   </div>
 
-  <!-- Halaman Promo -->
   <div id="promo" class="page" style="display:none;">
     <h2>Promo Spesial</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <img src="tape.png" alt="Promo Tape">
+        <p><b>Tape Ketan Hitam Promo</b></p>
+        <p>Beli 2 hanya Rp5.000, hemat Rp1.000!</p>
+        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+2+porsi+Tape+Ketan+Hitam+Promo+(Rp+5.000)" target="_blank" class="whatsapp-button">
+          Pesan via WhatsApp
+        </a>
+      </div>
 
-    <div class="menu-item">
-      <img src="tape.png" alt="Promo Tape">
-      <p><b>Tape Ketan Hitam Promo</b></p>
-      <p>Beli 2 hanya Rp5.000, hemat Rp1.000!</p>
-      <button onclick="tambahProduk('Promo Tape 2x', 5000)">Tambah ke Kasir</button>
-      <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+2+porsi+Tape+Ketan+Hitam+Promo+(Rp+5.000)" target="_blank">
-        <button>Pesan via WhatsApp</button>
-      </a>
-    </div>
-
-    <div class="menu-item">
-      <img src="bakso.png" alt="Bundling">
-        <img src="teh.png" alt="Bundling">
-      <p><b>Paket Bundling - Rp8.000</b></p>
-      <p>Bakso + Es Teh segar, harga hemat.</p>
-      <button onclick="tambahProduk('Paket Bundling', 8000)">Tambah ke Kasir</button>
-      <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+Paket+Bundling+Bakso+%2B+Es+Teh+(Rp+8.000)" target="_blank">
-        <button>Pesan via WhatsApp</button>
-      </a>
+      <div class="menu-item">
+        <div class="promo-images">
+          <img src="bakso.png" alt="Bundling Bakso">
+          <img src="teh.png" alt="Bundling Teh">
+        </div>
+        <p><b>Paket Bundling - Rp8.000</b></p>
+        <p>Bakso + Es Teh segar, harga hemat.</p>
+        <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+Paket+Bundling+Bakso+%2B+Es+Teh+(Rp+8.000)" target="_blank" class="whatsapp-button">
+          Pesan via WhatsApp
+        </a>
+      </div>
     </div>
   </div>
 
-  <!-- Halaman Kasir -->
   <div id="kasir" class="page" style="display:none;">
     <h2>Mesin Kasir</h2>
     <div id="kasir-container"></div>
   </div>
 
-  <!-- Halaman Data Penjualan -->
   <div id="penjualan" class="page" style="display:none;">
     <h2>Data Penjualan</h2>
     <div id="penjualan-container"></div>
@@ -107,8 +100,5 @@
   </div>
 
   <script src="script.js"></script>
-  <link rel="stylesheet" href="style.css">
-
 </body>
 </html>
-
