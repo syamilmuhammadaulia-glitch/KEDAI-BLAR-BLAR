@@ -267,6 +267,16 @@
 </html>
 
 <link rel="stylesheet" href="style.css">
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const unlockBtn = document.getElementById('sales-unlock-btn');
+  if (unlockBtn) unlockBtn.addEventListener('click', unlockPenjualan);
+
+  const clearBtn = document.getElementById('clear-sales-btn');
+  if (clearBtn) clearBtn.addEventListener('click', clearAllSales);
+});
+</script>
+
 
 
 
