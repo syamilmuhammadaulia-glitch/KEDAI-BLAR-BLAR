@@ -98,4 +98,13 @@ function renderSales() {
   html += `</ul><p><b>Total Pendapatan: Rp ${totalPendapatan}</b></p>`;
   document.getElementById("rekap").innerHTML = html;
 }
+// === QRIS toggle ===
+document.getElementById("payment").addEventListener("change", function() {
+  if (this.value === "qris") {
+    document.getElementById("qris-box").classList.remove("hide");
+  } else {
+    document.getElementById("qris-box").classList.add("hide");
+  }
+});
+
 
