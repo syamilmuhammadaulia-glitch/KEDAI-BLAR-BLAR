@@ -60,64 +60,70 @@
   </section>
 
   <!-- Mesin Kasir -->
-  <section class="kasir">
-    <h2>Mesin Kasir</h2>
-    <div class="login">
-      <input type="password" id="password" placeholder="Masukkan password">
-      <button id="loginBtn">Login</button>
-    </div>
-    <div id="kasirContent" class="hidden">
-      <div class="products">
-        <div class="product">
-          <h3>Bakso</h3>
-          <button onclick="addItem('Bakso', 5000)">Tambah</button>
-        </div>
-        <div class="product">
-          <h3>Tape Ketan Hitam</h3>
-          <button onclick="addItem('Tape Ketan Hitam', 3000)">Tambah</button>
-        </div>
-        <div class="product">
-          <h3>Es Teh</h3>
-          <button onclick="addItem('Es Teh', 5000)">Tambah</button>
-        </div>
-            <div class="product">
-          <h3>Bundling Tape Ketan Hitam</h3>
-          <button onclick="addItem('Tape Ketan Hitam', 5000)">Tambah</button>
-        </div>
-            <div class="product">
-          <h3>Bundling Bakso + Es Teh</h3>
-          <button onclick="addItem('Tape Ketan Hitam', 10000)">Tambah</button>
-        </div>
-      </div>
-      <div class="cart">
-         <h3>Keranjang</h3>
-        <ul id="cartItems"></ul>
-        <p>Total: Rp <span id="total">0</span></p>
-        <button onclick="checkout()">Checkout</button>
-      </div>
-    </div>
-  </section>
+<!-- Floating Buttons Kasir & Data Penjualan -->
+<div class="floating-buttons">
+  <button id="openKasirBtn">Kasir</button>
+  <button id="openDataBtn">Data Penjualan</button>
+</div>
 
-  <!-- Data Penjualan -->
-  <section class="data-penjualan">
-    <h2>Data Penjualan</h2>
-    <div id="loginData">
-      <input type="password" id="passwordData" placeholder="Masukkan password">
-      <button id="loginDataBtn">Login</button>
+<!-- Mesin Kasir -->
+<div id="kasirContent" class="floating-panel hidden">
+  <div class="panel-header">
+    <h3>Mesin Kasir</h3>
+    <button onclick="closePanel('kasirContent')">✖</button>
+  </div>
+  <div class="login">
+    <input type="password" id="password" placeholder="Masukkan password">
+    <button id="loginBtn">Login</button>
+  </div>
+  <div id="kasirPanel" class="hidden">
+    <div class="products">
+      <div class="product">
+        <h3>Bakso</h3>
+        <button onclick="addItem('Bakso', 5000)">Tambah</button>
+      </div>
+      <div class="product">
+        <h3>Tape Ketan Hitam</h3>
+        <button onclick="addItem('Tape Ketan Hitam', 3000)">Tambah</button>
+      </div>
+      <div class="product">
+        <h3>Es Teh</h3>
+        <button onclick="addItem('Es Teh', 5000)">Tambah</button>
+      </div>
     </div>
-    <div id="dataContent" class="hidden">
-      <table>
-        <thead>
-          <tr>
-            <th>Produk</th>
-            <th>Jumlah Terjual</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody id="dataTable"></tbody>
-      </table>
-      <button onclick="clearData()">Hapus History</button>
+    <div class="cart">
+      <h3>Keranjang</h3>
+      <ul id="cartItems"></ul>
+      <p>Total: Rp <span id="total">0</span></p>
+      <button onclick="checkout()">Checkout</button>
     </div>
+  </div>
+</div>
+
+<!-- Data Penjualan -->
+<div id="dataContent" class="floating-panel hidden">
+  <div class="panel-header">
+    <h3>Data Penjualan</h3>
+    <button onclick="closePanel('dataContent')">✖</button>
+  </div>
+  <div id="loginData">
+    <input type="password" id="passwordData" placeholder="Masukkan password">
+    <button id="loginDataBtn">Login</button>
+  </div>
+  <div id="dataPanel" class="hidden">
+    <table>
+      <thead>
+        <tr>
+          <th>Produk</th>
+          <th>Jumlah Terjual</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody id="dataTable"></tbody>
+    </table>
+    <button onclick="clearData()">Hapus History</button>
+  </div>
+</div>
   </section>
   <footer> <p>Kedai Blar Blar 2025 - NineFoosion</p> </footer>
 
@@ -125,5 +131,6 @@
     <link rel="stylesheet" href="style.css">
 </body>
 </html>
+
 
 
