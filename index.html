@@ -158,45 +158,53 @@
   </section>
 
   <!-- === KASIR === -->
-  <section id="kasir" class="section hide">
-    <div class="container">
-      <div id="kasir-lock" class="lock">
-        <h2>🔒 Akses Kasir</h2>
-        <input type="password" id="kasir-pass" placeholder="Masukkan Password">
-        <br><br>
-        <button onclick="unlockKasir()">Masuk</button>
-      </div>
-
-      <div id="kasir-content" class="hide">
-        <h2>🛒 Mesin Kasir</h2>
-        <div class="produk">
-          <button onclick="addItem('Bakso', 5000)">+ Bakso Rp 5.000</button>
-          <button onclick="addItem('Tape Ketan Hitam', 3000)">+ Tape Rp 3.000</button>
-          <button onclick="addItem('Bundling Tape (2)', 5000)">+ Bundling Tape 2 Rp 5.000</button>
-          <button onclick="addItem('Es Teh', 5000)">+ Es Teh Rp 5.000</button>
-          <button onclick="addItem('Bundling Bakso + Es Teh', 8000)">+ Paket Bakso+EsTeh Rp 8.000</button>
-          <button onclick="addItem('Jasuke', 5000)">+ Jasuke Rp 5.000</button>
-        </div>
-
-        <div id="cart"></div>
-        <p>Total: Rp <span id="total">0</span></p>
-
-        <label>Metode Pembayaran:
-          <select id="payment">
-            <option value="tunai">Tunai</option>
-            <option value="qris">QRIS</option>
-          </select>
-        </label>
-
-        <div id="qris-box" class="hide">
-          <p>Scan QRIS untuk bayar:</p>
-          <img src="img/qris.png" alt="QRIS" style="max-width:200px;">
-        </div>
-
-        <button onclick="checkout()">Checkout</button>
-      </div>
+<section id="kasir" class="section hide">
+  <div class="container">
+    <!-- LOCK -->
+    <div id="kasir-lock" class="lock">
+      <h2>🔒 Akses Kasir</h2>
+      <input type="password" id="kasir-pass" placeholder="Masukkan Password">
+      <br><br>
+      <button onclick="unlockKasir()">Masuk</button>
     </div>
-  </section>
+
+    <!-- CONTENT -->
+    <div id="kasir-content" class="hide">
+      <h2>🛒 Mesin Kasir</h2>
+
+      <!-- Produk -->
+      <div class="produk">
+        <button onclick="addItem('Bakso', 5000)">+ Bakso Rp 5.000</button>
+        <button onclick="addItem('Tape Ketan Hitam', 3000)">+ Tape Rp 3.000</button>
+        <button onclick="addItem('Bundling Tape (2)', 5000)">+ Bundling Tape 2 Rp 5.000</button>
+        <button onclick="addItem('Es Teh', 5000)">+ Es Teh Rp 5.000</button>
+        <button onclick="addItem('Bundling Bakso + Es Teh', 8000)">+ Paket Bakso+EsTeh Rp 8.000</button>
+        <button onclick="addItem('Jasuke', 5000)">+ Jasuke Rp 5.000</button>
+      </div>
+
+      <!-- Keranjang -->
+      <div id="cart"></div>
+      <p><b>Total: Rp <span id="total">0</span></b></p>
+
+      <!-- Pembayaran -->
+      <label>Metode Pembayaran:
+        <select id="payment">
+          <option value="tunai">Tunai</option>
+          <option value="qris">QRIS</option>
+        </select>
+      </label>
+
+      <!-- QRIS -->
+      <div id="qris-box" class="hide">
+        <p>Scan QRIS untuk bayar:</p>
+        <img src="img/qris.png" alt="QRIS" style="max-width:200px;">
+      </div>
+
+      <!-- Checkout -->
+      <button onclick="checkout()">Checkout</button>
+    </div>
+  </div>
+</section>
 
   <!-- === DATA PENJUALAN === -->
   <section id="penjualan" class="section hide">
@@ -237,3 +245,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+
