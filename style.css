@@ -37,21 +37,22 @@ body{
 }
 
 .products{
-  display:flex;
-  flex-wrap:wrap;
-  gap:20px;
-  justify-content:center;
+display:grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap:20px;
+width:100%;
+max-width:900px;
+margin:0 auto;
 }
 
 .product{
-  background-color: var(--bg);
-  border:2px solid var(--primary);
-  border-radius:12px;
-  text-align:center;
-  width:180px;
-  padding:15px;
-  transition: all 0.3s ease;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
+background-color: var(--bg);
+border:2px solid var(--primary);
+border-radius:12px;
+text-align:center;
+padding:15px;
+transition: all 0.3s ease;
+box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 
 .product:hover{
@@ -194,5 +195,6 @@ footer{
   color: #555;
   margin:5px 0 10px 0;
 }
+
 
 
