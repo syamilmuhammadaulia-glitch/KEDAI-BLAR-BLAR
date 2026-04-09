@@ -1,154 +1,320 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NineFoosionExpo - Kedai Blar Blar</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NineFoosionExpo - Kedai Blar Blar</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Landing Page -->
+    <section class="landing">
+      <h1>NineFoosionExpo<br />Kedai Blar Blar</h1>
+      <p>Selamat datang! Nikmati jajanan favoritmu ala SMP!</p>
+    </section>
 
-<!-- Landing Page -->
-<section class="landing">
-  <h1>NineFoosionExpo - Kedai Blar Blar</h1>
-  <p>Selamat datang! Nikmati jajanan favoritmu ala SMP!</p>
-</section>
+    <!-- Menu Produk -->
+    <section class="menu">
+      <h2>Menu Kami</h2>
+      <div class="products">
+        <div class="product">
+          <img
+            src="bakso.png"
+            onerror="this.src = 'https://placehold.co/400x300?text=Bakso'"
+            alt="Bakso"
+          />
+          <h3>Bakso</h3>
+          <p class="price">Rp 5.000</p>
+          <p class="description">
+            Bakso hangat dengan kuah gurih dan pelengkap mie, tahu, dan sayuran.
+          </p>
+          <a
+            href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Bakso+(Rp+5.000)"
+            class="btn-wa"
+          >
+            <i class="fab fa-whatsapp"></i> Pesan via WA
+          </a>
+        </div>
 
-<!-- Menu Produk -->
-<section class="menu">
-  <h2>Menu Kami</h2>
-  <div class="products">
-  <div class="product">
-    <img src="bakso.png" alt="Bakso">
-    <h3>Bakso</h3>
-    <p class="price">Rp 5.000</p>
-    <p class="description">Bakso hangat dengan kuah gurih dan pelengkap mie, tahu, dan sayuran.</p>
-    <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Bakso+(Rp+5.000)" class="btn-wa">Pesan via WA</a>
-  </div>
+        <div class="product">
+          <img
+            src="tape.png"
+            onerror="this.src = 'https://placehold.co/400x300?text=Tape+Ketan'"
+            alt="Tape Ketan Hitam"
+          />
+          <h3>Tape Ketan Hitam</h3>
+          <p class="price">Rp 3.000</p>
+          <p class="description">
+            Camilan manis-asam dari ketan hitam fermentasi, lembut di mulut dan
+            enak disantap kapan saja.
+          </p>
+          <a
+            href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Tape+Ketan+Hitam+(Rp+3.000)"
+            class="btn-wa"
+          >
+            <i class="fab fa-whatsapp"></i> Pesan via WA
+          </a>
+        </div>
 
-  <div class="product">
-    <img src="tape.png" alt="Tape Ketan Hitam">
-    <h3>Tape Ketan Hitam</h3>
-    <p class="price">Rp 3.000</p>
-    <p class="description">Camilan manis-asam dari ketan hitam fermentasi, lembut di mulut dan enak disantap kapan saja.</p>
-    <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Tape+Ketan+Hitam+(Rp+3.000)" class="btn-wa">Pesan via WA</a>
-  </div>
+        <div class="product">
+          <img
+            src="teh.png"
+            onerror="this.src = 'https://placehold.co/400x300?text=Es+Teh'"
+            alt="Es Teh"
+          />
+          <h3>Es Teh</h3>
+          <p class="price">Rp 5.000</p>
+          <p class="description">
+            Minuman teh segar dingin dengan es batu, pas untuk melepas dahaga
+            saat cuaca panas.
+          </p>
+          <a
+            href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+gelas+Es+Teh+(Rp+5.000)"
+            class="btn-wa"
+          >
+            <i class="fab fa-whatsapp"></i> Pesan via WA
+          </a>
+        </div>
 
-  <div class="product">
-    <img src="teh.png" alt="Es Teh">
-    <h3>Es Teh</h3>
-    <p class="price">Rp 5.000</p>
-    <p class="description">Minuman teh segar dingin dengan es batu, pas untuk melepas dahaga saat cuaca panas.</p>
-    <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+gelas+Es+Teh+(Rp+5.000)" class="btn-wa">Pesan via WA</a>
-  </div>
+        <div class="product">
+          <img
+            src="jasuke.png"
+            onerror="this.src = 'https://placehold.co/400x300?text=Jasuke'"
+            alt="Jasuke"
+          />
+          <h3>Jasuke</h3>
+          <p class="price">Rp 5.000</p>
+          <p class="description">
+            Jagung, susu, dan keju dicampur jadi satu, manis gurih yang cocok
+            untuk camilan favoritmu.
+          </p>
+          <a
+            href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Jasuke+(Rp+5.000)"
+            class="btn-wa"
+          >
+            <i class="fab fa-whatsapp"></i> Pesan via WA
+          </a>
+        </div>
+      </div>
+    </section>
 
-  <div class="product">
-    <img src="jasuke.png" alt="Jasuke">
-    <h3>Jasuke</h3>
-    <p class="price">Rp 5.000</p>
-    <p class="description">Jagung, susu, dan keju dicampur jadi satu, manis gurih yang cocok untuk camilan favoritmu.</p>
-    <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+1+porsi+Jasuke+(Rp+5.000)" class="btn-wa">Pesan via WA</a>
-  </div>
-  </div>
-</section>
+    <!-- Promo & Paket Hemat -->
+    <section class="promo">
+      <h2>
+        Promo & Paket Hemat
+        <i class="fas fa-percent" style="color: var(--primary)"></i>
+      </h2>
+      <div class="products">
+        <div class="product">
+          <img
+            src="tape.png"
+            onerror="this.src = 'https://placehold.co/400x300?text=Promo+Tape'"
+            alt="Tape Ketan Hitam Promo"
+          />
+          <h3>Paket Tape Ketan</h3>
+          <p class="description" style="font-weight: 600; color: var(--accent)">
+            Beli 1 Rp 3.000, Beli 2 Rp 5.000
+          </p>
+          <a
+            href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+2+porsi+Tape+Ketan+Hitam+Promo+(Rp+5.000)"
+            class="btn-wa"
+          >
+            <i class="fab fa-whatsapp"></i> Pesan via WA
+          </a>
+        </div>
+        <div class="product">
+          <img
+            src="bakso.png"
+            onerror="
+              this.src = 'https://placehold.co/400x300?text=Bundle+Bakso+Teh'
+            "
+            alt="Bundling Bakso + Es Teh"
+          />
+          <h3>Bundling Bakso + Es Teh</h3>
+          <p class="description" style="font-weight: 600; color: var(--accent)">
+            Harga normal Rp 10.000, promo hanya Rp 8.000
+          </p>
+          <a
+            href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+Paket+Bundling+Bakso+%2B+Es+Teh+(Rp+8.000)"
+            class="btn-wa"
+          >
+            <i class="fab fa-whatsapp"></i> Pesan via WA
+          </a>
+        </div>
+      </div>
+    </section>
 
-<!-- Promo & Paket Hemat -->
-<section class="promo">
-  <h2>Promo & Paket Hemat</h2>
-  <div class="products">
-    <div class="product">
-      <img src="tape.png" alt="Tape Ketan Hitam Promo">
-      <h3>Tape Ketan Hitam</h3>
-      <p>Beli 1 Rp 3.000, Beli 2 Rp 5.000</p>
-      <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+2+porsi+Tape+Ketan+Hitam+Promo+(Rp+5.000)" class="btn-wa">Pesan via WA</a>
+    <!-- Floating Buttons Kasir & Data Penjualan -->
+    <div class="floating-buttons">
+      <button id="openKasirBtn">
+        <i class="fas fa-cash-register"></i> Kasir
+      </button>
+      <button id="openDataBtn">
+        <i class="fas fa-chart-line"></i> Data Penjualan
+      </button>
     </div>
-    <div class="product">
-      <img src="bakso.png" alt="Bundling Bakso + Es Teh">
-        <img src="teh.png" alt="Bundling Bakso + Es Teh">
-      <h3>Bundling Bakso + Es Teh</h3>
-      <p>Harga normal Rp 10.000, promo hanya Rp 8.000</p>
-      <a href="https://wa.me/628996023111?text=Halo,+saya+mau+pesan+Paket+Bundling+Bakso+%2B+Es+Teh+(Rp+8.000)" class="btn-wa">Pesan via WA</a>
+
+    <!-- Panel Overlay -->
+    <div id="panelOverlay" class="panel-overlay"></div>
+
+    <!-- Mesin Kasir Panel -->
+    <div id="kasirContent" class="floating-panel">
+      <div class="panel-header">
+        <h3><i class="fas fa-cash-register"></i> Mesin Kasir</h3>
+        <button onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="login" id="kasirLogin">
+        <input type="password" id="password" placeholder="Masukkan PIN Kasir" />
+        <button id="loginBtn" class="primary-btn">Login Kasir</button>
+      </div>
+
+      <div id="kasirPanel" style="display: none">
+        <div class="kasir-products-list">
+          <div class="kasir-product">
+            <h3>Bakso</h3>
+            <button onclick="addItem('Bakso', 5000)">
+              <i class="fas fa-plus"></i> Tambah
+            </button>
+          </div>
+          <div class="kasir-product">
+            <h3>Tape Ketan Hitam</h3>
+            <button onclick="addItem('Tape Ketan Hitam', 3000)">
+              <i class="fas fa-plus"></i> Tambah
+            </button>
+          </div>
+          <div class="kasir-product">
+            <h3>Es Teh</h3>
+            <button onclick="addItem('Es Teh', 5000)">
+              <i class="fas fa-plus"></i> Tambah
+            </button>
+          </div>
+          <div class="kasir-product">
+            <h3>Bundling 2 Ketan Hitam</h3>
+            <button onclick="addItem('Bundling 2 Ketan Hitam', 5000)">
+              <i class="fas fa-plus"></i> Tambah
+            </button>
+          </div>
+          <div class="kasir-product">
+            <h3>Bundling Es Teh+Bakso</h3>
+            <button onclick="addItem('Bundling Bakso + Es Teh', 8000)">
+              <i class="fas fa-plus"></i> Tambah
+            </button>
+          </div>
+        </div>
+
+        <div class="cart">
+          <h3><i class="fas fa-shopping-cart"></i> Keranjang</h3>
+          <ul id="cartItems"></ul>
+          <p>Total: Rp <span id="total">0</span></p>
+          <div class="payment-methods">
+            <button onclick="pay('Tunai')">
+              <i class="fas fa-money-bill-wave"></i> Tunai
+            </button>
+            <button onclick="pay('QRIS')">
+              <i class="fas fa-qrcode"></i> QRIS
+            </button>
+          </div>
+          <div
+            id="qrisContainer"
+            style="display: none; text-align: center; margin-top: 15px"
+          >
+            <img
+              src="qris.png"
+              onerror="this.src = 'https://placehold.co/200x200?text=Scan+QRIS'"
+              alt="QRIS"
+              class="qris"
+            />
+            <p style="font-size: 0.8rem; margin-top: 5px; color: #666">
+              Scan QRIS ini untuk membayar
+            </p>
+            <button
+              onclick="finishQris()"
+              class="primary-btn"
+              style="width: 100%; margin-top: 10px"
+            >
+              Selesai Bayar
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
 
-<!-- Floating Buttons Kasir & Data Penjualan -->
-<div class="floating-buttons">
-  <button id="openKasirBtn">Kasir</button>
-  <button id="openDataBtn">Data Penjualan</button>
-</div>
+    <!-- Data Penjualan Panel -->
+    <div id="dataContent" class="floating-panel">
+      <div class="panel-header">
+        <h3><i class="fas fa-chart-line"></i> Data Penjualan</h3>
+        <button onclick="closePanel()"><i class="fas fa-times"></i></button>
+      </div>
 
-<!-- Mesin Kasir -->
-<div id="kasirContent" class="floating-panel hidden">
-  <div class="panel-header">
-    <h3>Mesin Kasir</h3>
-    <button onclick="closePanel('kasirContent')">✖</button>
-  </div>
-  <div class="login">
-    <input type="password" id="password" placeholder="Masukkan password">
-    <button id="loginBtn">Login</button>
-  </div>
-  <div id="kasirPanel" class="hidden">
-    <div class="products">
-      <div class="product"><h3>Bakso</h3><button onclick="addItem('Bakso',5000)">Tambah</button></div>
-      <div class="product"><h3>Tape Ketan Hitam</h3><button onclick="addItem('Tape Ketan Hitam',3000)">Tambah</button></div>
-      <div class="product"><h3>Es Teh</h3><button onclick="addItem('Es Teh',5000)">Tambah</button></div>
-     <div class="product"><h3>Bundling 2 Ketan Hitam</h3><button onclick="addItem('Bundling 2 Ketan Hitam',5000)">Tambah</button></div>
-      <div class="product"><h3>Bundling Es Teh+Bakso </h3></h3><button onclick="addItem('Bundling Bakso + Es Teh',10000)">Tambah</button></div>
+      <div class="login" id="loginData">
+        <input
+          type="password"
+          id="passwordData"
+          placeholder="Masukkan PIN Data"
+        />
+        <button id="loginDataBtn" class="primary-btn">Akses Data</button>
+      </div>
+
+      <div id="dataPanel" style="display: none">
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Produk</th>
+                <th>Terjual</th>
+                <th>Penghasilan</th>
+              </tr>
+            </thead>
+            <tbody id="dataTable"></tbody>
+          </table>
+        </div>
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <h4 style="margin: 0">Total: Rp <span id="grandTotal">0</span></h4>
+          <button
+            onclick="clearData()"
+            style="
+              padding: 8px 15px;
+              background: #ff4757;
+              color: white;
+              border: none;
+              border-radius: 8px;
+              cursor: pointer;
+            "
+          >
+            <i class="fas fa-trash"></i> Hapus History
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="cart">
-      <h3>Keranjang</h3>
-      <ul id="cartItems"></ul>
-      <p>Total: Rp <span id="total">0</span></p>
-      <h4>Metode Pembayaran</h4>
-      <button onclick="pay('Tunai')">Tunai</button>
-      <button onclick="pay('QRIS')">QRIS</button>
-      <img src="qris.png" alt="QRIS" class="qris">
-    </div>
-  </div>
-</div>
 
-<!-- Data Penjualan -->
-<div id="dataContent" class="floating-panel hidden">
-  <div class="panel-header">
-    <h3>Data Penjualan</h3>
-    <button onclick="closePanel('dataContent')">✖</button>
-  </div>
-  <div id="loginData">
-    <input type="password" id="passwordData" placeholder="Masukkan password">
-    <button id="loginDataBtn">Login</button>
-  </div>
-  <div id="dataPanel" class="hidden">
-    <table>
-      <thead>
-        <tr>
-          <th>Produk</th>
-          <th>Jumlah Terjual</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody id="dataTable"></tbody>
-    </table>
-    <button onclick="clearData()">Hapus History</button>
-  </div>
-</div>
+    <!-- Footer -->
+    <footer>
+      <p>
+        &copy; 2025 NineFoosionExpo - Kedai Blar Blar<br /><small
+          >Supported by Kelompok 29A1</small
+        >
+      </p>
+    </footer>
 
-<!-- Footer -->
-<footer>
-  <p>&copy; 2025 NineFoosionExpo - Kedai Blar Blar</p>
-</footer>
-
-<script src="script.js"></script>
-  <link rel="stylesheet" href="style.css">
-
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
-
-
-
-
-
-
-
-
-
